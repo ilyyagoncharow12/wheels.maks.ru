@@ -417,6 +417,86 @@
             transform: translateY(-3px);
         }
 
+        /* Подвал */
+        footer {
+            background: #1a1a1a;
+            color: #fff;
+            padding: 60px 0 20px;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            color: #fff;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 3px;
+            background: #1f5bff;
+        }
+
+        .footer-column p {
+            color: #aaa;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 12px;
+            color: #ccc;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-column ul li:before {
+            content: '•';
+            color: #1f5bff;
+            font-weight: bold;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        /* License Footer */
+        #license-footer {
+            background: black;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            font-family: Arial, sans-serif;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             body {
@@ -478,6 +558,11 @@
 
             .location-info {
                 padding: 30px 20px;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
             }
         }
     </style>
@@ -599,7 +684,7 @@
         <div class="container">
             <div class="location-info">
                 <h3 class="location-title">Наш адрес</h3>
-                <p class="address">г. Долгопрудный микрорайон Хлебниково ул. Новое шоссе 14</p>
+                <p class="address">г. Долгопрудный, Госпитальная улица 1Б</p>
 
                 <div class="schedule">
                     <div class="schedule-item">
@@ -650,6 +735,39 @@
             </div>
         </div>
     </section>
+
+    <!-- Подвал -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Шины Макс</h3>
+                    <p>Мы предлагаем лучшие шины и профессиональные услуги по шиномонтажу в Долгопрудном и Хлебниково. Качество и надежность - наш приоритет на протяжении 13 лет работы.</p>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Контакты</h3>
+                    <ul>
+                        <li>📞 +7 906 786-70-46</li>
+                        <li>📍 г. Долгопрудный, Госпитальная улица 1Б</li>
+
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Время работы</h3>
+                    <ul>
+                        <li>Пн-Вс: 9:00 - 22:00</li>
+                        <li>Без перерывов и выходных</li>
+                        <li>Сезонное хранение: круглый год</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                © 2013-2026 Шины Макс. Все права защищены.
+            </div>
+        </div>
+    </footer>
 
     <style>
     #license-footer {
