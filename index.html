@@ -125,12 +125,32 @@
             padding: 0 20px;
         }
 
-        /* Hero Section - Обновленный дизайн */
+        /* Hero Section - Обновленный с фоновым изображением */
         .hero {
-            background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
-            padding: 60px 0;
             position: relative;
+            padding: 80px 0;
+            background-image: url('hero-bg.jpg'); /* Название файла фонового изображения */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
             overflow: hidden;
+        }
+
+        /* Затемняющий оверлей для лучшей читаемости текста */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5); /* Черный полупрозрачный слой */
+            z-index: 1;
+        }
+
+        .hero .container {
+            position: relative;
+            z-index: 2;
         }
 
         .hero-content {
@@ -152,12 +172,12 @@
             width: 200px;
             height: 200px;
             border-radius: 50%;
-            border: 4px solid #2D5BFF;
+            border: 4px solid #fff; /* Белая рамка для контраста на темном фоне */
             background: #fff;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 10px 30px rgba(45, 91, 255, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
             overflow: hidden;
         }
 
@@ -177,14 +197,16 @@
             font-size: 3.5rem;
             font-weight: 700;
             margin-bottom: 15px;
-            color: #000;
+            color: #fff; /* Белый текст на темном фоне */
             line-height: 1.2;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
 
         .hero-text p {
             font-size: 1.2rem;
-            color: #666;
+            color: #fff; /* Белый текст на темном фоне */
             margin-bottom: 30px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
         }
 
         .hero-stats {
@@ -200,32 +222,35 @@
         .stat-number {
             font-size: 2rem;
             font-weight: 700;
-            color: #2D5BFF;
+            color: #fff; /* Белый текст на темном фоне */
             display: block;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
 
         .stat-label {
             font-size: 0.9rem;
-            color: #666;
+            color: #fff; /* Белый текст на темном фоне */
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
         }
 
-        /* Button */
+        /* Button - адаптирован для темного фона */
         .btn {
             display: inline-block;
             padding: 15px 40px;
-            background: #000;
+            background: #2D5BFF; /* Синий цвет для кнопки */
             color: #fff;
             text-decoration: none;
             border-radius: 30px;
             font-weight: 600;
-            border: 3px solid #000;
+            border: 3px solid #2D5BFF;
             transition: all 0.3s ease;
             margin: 30px 0;
         }
 
         .btn:hover {
             background: transparent;
-            color: #000;
+            color: #fff;
+            border-color: #fff;
         }
 
         /* Services Section */
@@ -702,7 +727,7 @@
         </div>
     </nav>
 
-    <!-- Hero Section - Обновленный -->
+    <!-- Hero Section - Обновленный с фоновым изображением -->
     <section class="hero" id="hero">
         <div class="container">
             <div class="hero-content">
@@ -725,7 +750,7 @@
                             <span class="stat-label">Шин в наличии</span>
                         </div>
                         <div class="stat-item">
-                            <span class="stat-number">9:00-22:00</span>
+                            <span class="stat-number">24/7</span>
                             <span class="stat-label">Режим работы</span>
                         </div>
                     </div>
