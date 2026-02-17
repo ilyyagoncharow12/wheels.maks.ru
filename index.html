@@ -125,53 +125,88 @@
             padding: 0 20px;
         }
 
-        /* Hero Section */
+        /* Hero Section - Обновленный дизайн */
         .hero {
             background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
-            padding: 80px 0;
-            text-align: center;
+            padding: 60px 0;
             position: relative;
             overflow: hidden;
         }
 
         .hero-content {
-            position: relative;
-            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 50px;
+            flex-wrap: wrap;
         }
 
-        .logo {
-            width: 160px;
-            height: 160px;
-            margin: 0 auto 30px;
+        .hero-logo-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .hero-logo {
+            width: 200px;
+            height: 200px;
             border-radius: 50%;
-            border: 3px solid #fff;
+            border: 4px solid #2D5BFF;
             background: #fff;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px rgba(45, 91, 255, 0.2);
+            overflow: hidden;
         }
 
-        .logo img {
-            width: 140px;
-            height: 140px;
+        .hero-logo img {
+            width: 180px;
+            height: 180px;
             border-radius: 50%;
             object-fit: contain;
-            border: 3px solid #2D5BFF;
         }
 
-        .hero h1 {
-            font-size: 3rem;
+        .hero-text {
+            text-align: left;
+            max-width: 500px;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
             font-weight: 700;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             color: #000;
+            line-height: 1.2;
         }
 
-        .hero p {
+        .hero-text p {
             font-size: 1.2rem;
-            color: #000;
-            max-width: 600px;
-            margin: 0 auto;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #2D5BFF;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #666;
         }
 
         /* Button */
@@ -320,6 +355,59 @@
             background: transparent;
             color: #1f5bff;
             border-color: #1f5bff;
+        }
+
+        /* Обновленный дизайн карты */
+        .map-container {
+            position: relative;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            border: 5px solid #fff;
+            transition: all 0.3s ease;
+        }
+
+        .map-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 50px rgba(45, 91, 255, 0.3);
+            border-color: #2D5BFF;
+        }
+
+        .google-map {
+            width: 100%;
+            height: 450px;
+            position: relative;
+        }
+
+        .google-map iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+            display: block;
+        }
+
+        .map-overlay {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 12px 24px;
+            border-radius: 50px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+            color: #000;
+            backdrop-filter: blur(5px);
+            border: 2px solid #2D5BFF;
+            pointer-events: none;
+        }
+
+        .map-overlay svg {
+            width: 20px;
+            height: 20px;
+            fill: #2D5BFF;
         }
 
         /* Directions Section */
@@ -536,8 +624,22 @@
                 transform: rotate(45deg) translate(-5px, -6px);
             }
 
-            .hero h1 {
-                font-size: 2rem;
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 30px;
+            }
+
+            .hero-text {
+                text-align: center;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-stats {
+                justify-content: center;
             }
 
             .services-grid {
@@ -563,6 +665,13 @@
             .footer-content {
                 grid-template-columns: 1fr;
                 gap: 30px;
+            }
+
+            .map-overlay {
+                bottom: 10px;
+                right: 10px;
+                padding: 8px 16px;
+                font-size: 0.9rem;
             }
         }
     </style>
@@ -593,16 +702,34 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- Hero Section - Обновленный -->
     <section class="hero" id="hero">
         <div class="container">
             <div class="hero-content">
-                <div class="logo">
-                    <img src="https://static.tildacdn.pub/tild6537-6264-4537-a536-366430656136/2025-05-31_23-10-58_.png" alt="Шины Макс">
+                <div class="hero-logo-wrapper">
+                    <div class="hero-logo">
+                        <img src="https://static.tildacdn.pub/tild6537-6264-4537-a536-366430656136/2025-05-31_23-10-58_.png" alt="Шины Макс">
+                    </div>
+                    <a href="wheels_catalog.html" class="btn">Каталог шин</a>
                 </div>
-                <h1>Шины Макс</h1>
-                <p>Наша организация существует 13 лет!</p>
-                <a href="wheels_catalog.html" class="btn">Небольшой каталог шин!</a>
+                <div class="hero-text">
+                    <h1>Шины Макс</h1>
+                    <p>Профессиональный шиномонтаж в Долгопрудном с 2013 года. Более 13 лет опыта и тысячи довольных клиентов.</p>
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">13+</span>
+                            <span class="stat-label">Лет работы</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">1000+</span>
+                            <span class="stat-label">Шин в наличии</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">24/7</span>
+                            <span class="stat-label">Режим работы</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -617,7 +744,6 @@
             </p>
 
             <div class="services-grid">
-                <!-- Остальные карточки услуг без изменений -->
                 <div class="service-card">
                     <div class="service-icon">
                         <img src="https://static.tildacdn.pub/tild3264-3039-4530-a234-393930626630/vector.svg" alt="Доставка">
@@ -679,7 +805,7 @@
         </div>
     </section>
 
-    <!-- Location Section -->
+    <!-- Location Section с обновленной картой -->
     <section class="location" id="location">
         <div class="container">
             <div class="location-info">
@@ -700,17 +826,22 @@
                 <a href="https://go.2gis.com/RRjqj" target="_blank" class="btn map-btn">2ГИС</a>
             </div>
 
-            <!-- Google Map -->
-            <div class="google-map">
-                <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d646.2195066331548!2d37.50726662389101!3d55.97083208094146!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1sru!2sru!4v1764502773334!5m2!1sru!2sru"
-                    width="100%"
-                    height="400"
-                    style="border:0;"
-                    allowfullscreen=""
-                    loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade">
-                </iframe>
+            <!-- Обновленная карта Google с красивым дизайном -->
+            <div class="map-container">
+                <div class="google-map">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d646.2195066331548!2d37.50726662389101!3d55.97083208094146!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1sru!2sru!4v1764502773334!5m2!1sru!2sru"
+                        allowfullscreen=""
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+                <div class="map-overlay">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                    </svg>
+                    <span>Мы здесь</span>
+                </div>
             </div>
         </div>
     </section>
