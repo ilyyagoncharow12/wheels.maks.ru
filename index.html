@@ -70,11 +70,22 @@
             border-radius: 50%;
             object-fit: contain;
             border: 2px solid #2D5BFF;
+            transition: border-color 0.3s ease;
+        }
+
+        .nav-brand:hover .nav-logo {
+            border-color: #2D5BFF;
+            box-shadow: 0 0 15px rgba(45, 91, 255, 0.3);
         }
 
         .brand-text {
             font-size: 1.5rem;
             font-weight: 700;
+            transition: color 0.3s ease;
+        }
+
+        .nav-brand:hover .brand-text {
+            color: #2D5BFF;
         }
 
         .nav-menu {
@@ -91,17 +102,38 @@
             border-radius: 25px;
             transition: all 0.3s ease;
             border: 2px solid transparent;
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background: #2D5BFF;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 70%;
         }
 
         .nav-link:hover {
-            background: #000;
-            color: #fff;
+            color: #2D5BFF;
+            transform: translateY(-2px);
         }
 
         .nav-link.active {
             background: #1f5bff;
             color: #fff;
             border-color: #1f5bff;
+        }
+
+        .nav-link.active::after {
+            display: none;
         }
 
         /* Mobile menu */
@@ -125,18 +157,17 @@
             padding: 0 20px;
         }
 
-        /* Hero Section - Обновленный с фоновым изображением */
+        /* Hero Section */
         .hero {
             position: relative;
             padding: 80px 0;
-            background-image: url('hero-bg.png'); /* Название файла фонового изображения */
+            background-image: url('hero-bg.png');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
             overflow: hidden;
         }
 
-        /* Затемняющий оверлей для лучшей читаемости текста */
         .hero::before {
             content: '';
             position: absolute;
@@ -144,7 +175,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0, 0, 0, 0.5); /* Черный полупрозрачный слой */
+            background: rgba(0, 0, 0, 0.5);
             z-index: 1;
         }
 
@@ -172,13 +203,19 @@
             width: 200px;
             height: 200px;
             border-radius: 50%;
-            border: 4px solid #1F49D4; /* Белая рамка для контраста на темном фоне */
+            border: 4px solid #1F49D4;
             background: #fff;
             display: flex;
             align-items: center;
             justify-content: center;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
             overflow: hidden;
+            transition: border-color 0.3s ease;
+        }
+
+        .hero-logo:hover {
+            border-color: #ffaa00;
+            box-shadow: 0 10px 30px rgba(255, 170, 0, 0.3);
         }
 
         .hero-logo img {
@@ -197,16 +234,26 @@
             font-size: 3.5rem;
             font-weight: 700;
             margin-bottom: 15px;
-            color: #fff; /* Белый текст на темном фоне */
+            color: #fff;
             line-height: 1.2;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            transition: text-shadow 0.3s ease;
+        }
+
+        .hero-text h1:hover {
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.5), 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
 
         .hero-text p {
             font-size: 1.2rem;
-            color: #fff; /* Белый текст на темном фоне */
+            color: #fff;
             margin-bottom: 30px;
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease;
+        }
+
+        .hero-text p:hover {
+            transform: translateX(5px);
         }
 
         .hero-stats {
@@ -217,27 +264,41 @@
 
         .stat-item {
             text-align: center;
+            transition: all 0.3s ease;
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        .stat-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            transform: translateY(-5px);
         }
 
         .stat-number {
             font-size: 2rem;
             font-weight: 700;
-            color: #fff; /* Белый текст на темном фоне */
+            color: #fff;
             display: block;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            transition: color 0.3s ease;
+        }
+
+        .stat-item:hover .stat-number {
+            color: #ffaa00;
         }
 
         .stat-label {
             font-size: 0.9rem;
-            color: #fff; /* Белый текст на темном фоне */
+            color: #fff;
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
         }
 
-        /* Button - адаптирован для темного фона */
+        /* Button */
         .btn {
             display: inline-block;
             padding: 15px 40px;
-            background: #2D5BFF; /* Синий цвет для кнопки */
+            background: #2D5BFF;
             color: #fff;
             text-decoration: none;
             border-radius: 30px;
@@ -245,18 +306,74 @@
             border: 3px solid #2D5BFF;
             transition: all 0.3s ease;
             margin: 30px 0;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+            z-index: -1;
+        }
+
+        .btn:hover::before {
+            left: 100%;
         }
 
         .btn:hover {
             background: transparent;
             color: #fff;
             border-color: #fff;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 255, 255, 0.3);
+        }
+
+        .btn:active {
+            transform: translateY(-1px);
         }
 
         /* Services Section */
         .services {
             padding: 100px 0;
             background: #d7d7d7;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .services::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(45, 91, 255, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: 0;
+            animation: pulse-bg 8s infinite alternate;
+        }
+
+        @keyframes pulse-bg {
+            0% {
+                transform: scale(1);
+                opacity: 0.3;
+            }
+            100% {
+                transform: scale(1.2);
+                opacity: 0.6;
+            }
+        }
+
+        .services .container {
+            position: relative;
+            z-index: 2;
         }
 
         .section-title {
@@ -265,6 +382,11 @@
             font-weight: 700;
             margin-bottom: 20px;
             color: #000;
+            transition: text-shadow 0.3s ease;
+        }
+
+        .section-title:hover {
+            text-shadow: 2px 2px 10px rgba(45, 91, 255, 0.3);
         }
 
         .section-subtitle {
@@ -274,57 +396,140 @@
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            margin-top: 60px;
-        }
-
-        .service-card {
-            background: #fff;
-            padding: 40px 30px;
-            border-radius: 20px;
-            text-align: center;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            color: #333;
             transition: transform 0.3s ease;
         }
 
-        .service-card:hover {
-            transform: translateY(-5px);
+        .section-subtitle:hover {
+            transform: scale(1.02);
         }
 
-        .service-icon {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 20px;
-            background: #f8f8f8;
-            border-radius: 20px;
+        .services-grid-modern {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .service-card-modern {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            padding: 40px 25px;
+            border-radius: 30px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            cursor: default;
+        }
+
+        .service-card-modern::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(45, 91, 255, 0.1), rgba(255, 255, 255, 0.2));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+        }
+
+        .service-card-modern::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.6s ease;
+            pointer-events: none;
+            transform: scale(0.5);
+        }
+
+        .service-card-modern:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 30px 45px rgba(45, 91, 255, 0.2);
+            border-color: #2D5BFF;
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .service-card-modern:hover::before {
+            opacity: 1;
+        }
+
+        .service-card-modern:hover::after {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .service-icon-modern {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 25px;
+            background: #fff;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+            border: 2px solid transparent;
+            padding: 15px;
         }
 
-        .service-icon img {
-            width: 50px;
-            height: 50px;
+        .service-card-modern:hover .service-icon-modern {
+            border-color: #2D5BFF;
+            transform: rotate(5deg) scale(1.1);
+            background: #f0f4ff;
+            box-shadow: 0 15px 30px rgba(45, 91, 255, 0.3);
         }
 
-        .service-card h3 {
-            font-size: 1.3rem;
-            font-weight: 600;
+        .service-icon-modern img {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+            filter: brightness(0.8);
+        }
+
+        .service-card-modern:hover .service-icon-modern img {
+            filter: brightness(1) invert(27%) sepia(92%) saturate(1927%) hue-rotate(223deg) brightness(104%) contrast(106%);
+            transform: scale(1.1) rotate(-2deg);
+        }
+
+        .service-card-modern h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
             margin-bottom: 15px;
             color: #000;
+            transition: all 0.3s ease;
         }
 
-        .service-card p {
-            color: #666;
+        .service-card-modern:hover h3 {
+            color: #2D5BFF;
+            transform: translateY(-2px);
+        }
+
+        .service-card-modern p {
+            color: #555;
             font-size: 0.95rem;
+            line-height: 1.5;
+            transition: all 0.3s ease;
         }
 
-        /* Location Section */
+        .service-card-modern:hover p {
+            color: #333;
+            transform: translateY(-2px);
+        }
+
+        /* Location Section - ИСПРАВЛЕННАЯ КАРТА */
         .location {
             padding: 80px 0;
             background: #efefef;
@@ -336,6 +541,12 @@
             border-radius: 20px;
             box-shadow: 0 8px 32px rgba(0,0,0,0.1);
             margin-bottom: 50px;
+            transition: all 0.3s ease;
+        }
+
+        .location-info:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
         }
 
         .location-title {
@@ -343,6 +554,11 @@
             font-weight: 700;
             margin-bottom: 30px;
             color: #000;
+            transition: color 0.3s ease;
+        }
+
+        .location-info:hover .location-title {
+            color: #2D5BFF;
         }
 
         .address {
@@ -350,6 +566,12 @@
             font-weight: 600;
             margin-bottom: 30px;
             color: #000;
+            transition: transform 0.3s ease;
+        }
+
+        .address:hover {
+            transform: translateX(5px);
+            color: #2D5BFF;
         }
 
         .schedule {
@@ -359,80 +581,124 @@
             margin-bottom: 40px;
         }
 
+        .schedule-item {
+            transition: all 0.3s ease;
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        .schedule-item:hover {
+            background: #f0f4ff;
+            transform: translateY(-3px);
+        }
+
         .schedule-item h4 {
             font-weight: 600;
             margin-bottom: 10px;
             color: #000;
+            transition: color 0.3s ease;
+        }
+
+        .schedule-item:hover h4 {
+            color: #2D5BFF;
         }
 
         .schedule-item p {
             color: #666;
             font-size: 1.1rem;
+            transition: color 0.3s ease;
         }
 
         .map-btn {
             background: #1f5bff;
             color: #fff;
             border: none;
+            padding: 12px 35px;
+            border-radius: 40px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            margin-right: 15px;
         }
 
         .map-btn:hover {
             background: transparent;
             color: #1f5bff;
             border-color: #1f5bff;
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 10px 20px rgba(31, 91, 255, 0.3);
         }
 
-        /* Обновленный дизайн карты */
-        .map-container {
+        /* УЛУЧШЕННАЯ КНОПКА ДЛЯ ЯНДЕКС КАРТ */
+        .yandex-route-btn {
+            background: #FC3F1D;
+            color: white;
+            border: 2px solid #FC3F1D;
+            padding: 14px 40px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 5px 15px rgba(252, 63, 29, 0.3);
+            letter-spacing: 0.5px;
+            margin-left: 10px;
+        }
+
+        .yandex-route-btn:hover {
+            background: transparent;
+            color: #FC3F1D;
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(252, 63, 29, 0.4);
+            border-color: #FC3F1D;
+        }
+
+        .yandex-route-btn svg {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
+            transition: transform 0.3s ease;
+        }
+
+        .yandex-route-btn:hover svg {
+            transform: translateX(5px);
+        }
+
+        .yandex-route-btn:active {
+            transform: translateY(-2px) scale(1.02);
+        }
+
+        /* ПРОСТАЯ КАРТА GOOGLE БЕЗ МЕТОК */
+        .map-container-simple {
             position: relative;
             border-radius: 30px;
             overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 25px 40px rgba(0, 0, 0, 0.2);
             border: 5px solid #fff;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
+            height: 500px;
+            margin-top: 40px;
         }
 
-        .map-container:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 25px 50px rgba(45, 91, 255, 0.3);
+        .map-container-simple:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 35px 60px rgba(45, 91, 255, 0.3);
             border-color: #2D5BFF;
         }
 
-        .google-map {
+        .google-map-simple {
             width: 100%;
-            height: 450px;
-            position: relative;
+            height: 100%;
         }
 
-        .google-map iframe {
+        .google-map-simple iframe {
             width: 100%;
             height: 100%;
             border: 0;
             display: block;
-        }
-
-        .map-overlay {
-            position: absolute;
-            bottom: 20px;
-            right: 20px;
-            background: rgba(255, 255, 255, 0.95);
-            padding: 12px 24px;
-            border-radius: 50px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-weight: 600;
-            color: #000;
-            backdrop-filter: blur(5px);
-            border: 2px solid #2D5BFF;
-            pointer-events: none;
-        }
-
-        .map-overlay svg {
-            width: 20px;
-            height: 20px;
-            fill: #2D5BFF;
         }
 
         /* Directions Section */
@@ -453,6 +719,12 @@
             font-weight: 700;
             margin-bottom: 20px;
             color: #000;
+            transition: transform 0.3s ease;
+        }
+
+        .directions-text h2:hover {
+            transform: translateX(5px);
+            color: #2D5BFF;
         }
 
         .directions-text p {
@@ -460,6 +732,12 @@
             color: #000;
             margin-bottom: 30px;
             line-height: 1.8;
+            transition: all 0.3s ease;
+        }
+
+        .directions-text p:hover {
+            color: #333;
+            transform: scale(1.01);
         }
 
         .directions-images {
@@ -472,17 +750,41 @@
             border-radius: 15px;
             overflow: hidden;
             box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .direction-img::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(45, 91, 255, 0.3), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1;
+        }
+
+        .direction-img:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(45, 91, 255, 0.3);
+        }
+
+        .direction-img:hover::before {
+            opacity: 1;
         }
 
         .direction-img img {
             width: 100%;
             height: 200px;
             object-fit: cover;
-            transition: transform 0.3s ease;
+            transition: transform 0.5s ease;
         }
 
         .direction-img:hover img {
-            transform: scale(1.05);
+            transform: scale(1.1);
         }
 
         /* Contact Section */
@@ -497,12 +799,26 @@
             font-weight: 700;
             margin-bottom: 20px;
             color: #000;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .phone:hover {
+            color: #2D5BFF;
+            transform: scale(1.05);
+            text-shadow: 0 5px 15px rgba(45, 91, 255, 0.3);
         }
 
         .contact-address {
             font-size: 1.2rem;
             margin-bottom: 40px;
             color: #666;
+            transition: all 0.3s ease;
+        }
+
+        .contact-address:hover {
+            color: #000;
+            transform: translateY(-2px);
         }
 
         .social-links {
@@ -523,14 +839,39 @@
             color: #fff;
             text-decoration: none;
             transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-link::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.3s ease, height 0.3s ease;
+        }
+
+        .social-link:hover::before {
+            width: 100px;
+            height: 100px;
         }
 
         .social-link:hover {
             background: #1f5bff;
-            transform: translateY(-3px);
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 10px 20px rgba(31, 91, 255, 0.4);
         }
 
-        /* Подвал */
+        .social-link:active {
+            transform: translateY(-2px) scale(1.05);
+        }
+
+        /* Footer */
         footer {
             background: #1a1a1a;
             color: #fff;
@@ -545,6 +886,14 @@
             margin-bottom: 40px;
         }
 
+        .footer-column {
+            transition: transform 0.3s ease;
+        }
+
+        .footer-column:hover {
+            transform: translateY(-5px);
+        }
+
         .footer-column h3 {
             color: #fff;
             font-size: 1.5rem;
@@ -552,6 +901,11 @@
             margin-bottom: 20px;
             position: relative;
             padding-bottom: 10px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-column:hover h3 {
+            color: #2D5BFF;
         }
 
         .footer-column h3::after {
@@ -562,12 +916,22 @@
             width: 50px;
             height: 3px;
             background: #1f5bff;
+            transition: width 0.3s ease;
+        }
+
+        .footer-column:hover h3::after {
+            width: 80px;
         }
 
         .footer-column p {
             color: #aaa;
             line-height: 1.6;
             margin-bottom: 20px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-column:hover p {
+            color: #ccc;
         }
 
         .footer-column ul {
@@ -580,12 +944,24 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .footer-column ul li:hover {
+            transform: translateX(5px);
+            color: #fff;
         }
 
         .footer-column ul li:before {
             content: '•';
             color: #1f5bff;
             font-weight: bold;
+            transition: transform 0.3s ease;
+        }
+
+        .footer-column ul li:hover:before {
+            transform: scale(1.5);
+            color: #ffaa00;
         }
 
         .footer-bottom {
@@ -594,6 +970,11 @@
             border-top: 1px solid #333;
             color: #888;
             font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-bottom:hover {
+            color: #aaa;
         }
 
         /* License Footer */
@@ -608,6 +989,12 @@
             left: 0;
             width: 100%;
             font-family: Arial, sans-serif;
+            z-index: 100;
+            transition: background 0.3s ease;
+        }
+
+        #license-footer:hover {
+            background: #2D5BFF;
         }
 
         /* Responsive */
@@ -667,7 +1054,7 @@
                 justify-content: center;
             }
 
-            .services-grid {
+            .services-grid-modern {
                 grid-template-columns: 1fr;
             }
 
@@ -692,11 +1079,21 @@
                 gap: 30px;
             }
 
-            .map-overlay {
-                bottom: 10px;
-                right: 10px;
-                padding: 8px 16px;
-                font-size: 0.9rem;
+            .map-container-simple {
+                height: 350px;
+            }
+
+            .yandex-route-btn {
+                margin-left: 0;
+                margin-top: 15px;
+                width: 100%;
+                justify-content: center;
+            }
+
+            .map-btn {
+                margin-right: 0;
+                width: 100%;
+                text-align: center;
             }
         }
     </style>
@@ -727,7 +1124,7 @@
         </div>
     </nav>
 
-    <!-- Hero Section - Обновленный с фоновым изображением -->
+    <!-- Hero Section -->
     <section class="hero" id="hero">
         <div class="container">
             <div class="hero-content">
@@ -762,80 +1159,86 @@
     <!-- Services Section -->
     <section class="services" id="services">
         <div class="container">
-            <h2 class="section-title">Наши услуги по<br>шиномонтажу!</h2>
+            <h2 class="section-title">Наши услуги по шиномонтажу!</h2>
             <p class="section-subtitle">
                 <strong>Для получения дополнительной информации о наших услугах, наличии других шин/дисков, свяжитесь с нами по телефону</strong><br>
                 <strong>+7 906 786-70-46</strong>
             </p>
 
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">
+            <div class="services-grid-modern">
+                <div class="service-card-modern">
+                    <div class="service-icon-modern">
                         <img src="https://static.tildacdn.pub/tild3264-3039-4530-a234-393930626630/vector.svg" alt="Доставка">
                     </div>
                     <h3>Отправка в регионы</h3>
                     <p>Мы отправляем шины, диски в регионы РФ.</p>
                 </div>
 
-                <div class="service-card">
-                    <div class="service-icon">
+                <div class="service-card-modern">
+                    <div class="service-icon-modern">
                         <img src="https://static.tildacdn.pub/lib/icons/tilda/wheel_tire.svg" alt="Шиномонтаж">
                     </div>
                     <h3>Шиномонтаж</h3>
+                    <p>Профессиональный монтаж и балансировка.</p>
                 </div>
 
-                <div class="service-card">
-                    <div class="service-icon">
+                <div class="service-card-modern">
+                    <div class="service-icon-modern">
                         <img src="https://static.tildacdn.pub/tild6137-3865-4933-b535-623563363261/i_2-no-bg-preview_ca.png" alt="Правка дисков">
                     </div>
                     <h3>Правка дисков</h3>
+                    <p>Восстановление геометрии дисков.</p>
                 </div>
 
-                <div class="service-card">
-                    <div class="service-icon">
+                <div class="service-card-modern">
+                    <div class="service-icon-modern">
                         <img src="https://static.tildacdn.pub/tild3661-3065-4664-a139-376666326236/2025-08-24_12-47-21-.png" alt="Ремонт">
                     </div>
-                    <h3>Удаление секреток, сломанных болтов, гаек</h3>
+                    <h3>Удаление секреток</h3>
+                    <p>Сломанных болтов, гаек любой сложности.</p>
                 </div>
 
-                <div class="service-card">
-                    <div class="service-icon">
+                <div class="service-card-modern">
+                    <div class="service-icon-modern">
                         <img src="https://static.tildacdn.pub/tild3535-3562-4131-b833-666464303162/how_icon_3.png" alt="Хранение">
                     </div>
-                    <h3>Сезонное хранение колес</h3>
-                    <p>Огромный склад и надежное хранение.</p>
+                    <h3>Сезонное хранение</h3>
+                    <p>Огромный склад и надежное хранение колес.</p>
                 </div>
 
-                <div class="service-card">
-                    <div class="service-icon">
+                <div class="service-card-modern">
+                    <div class="service-icon-modern">
                         <img src="https://static.tildacdn.pub/tild3732-3039-4131-b531-616338643436/Made-in-China-Automo.png" alt="Ассортимент">
                     </div>
-                    <h3>Более тысячи шин, дисков</h3>
+                    <h3>Более тысячи шин</h3>
+                    <p>Широкий выбор шин и дисков в наличии.</p>
                 </div>
 
-                <div class="service-card">
-                    <div class="service-icon">
+                <div class="service-card-modern">
+                    <div class="service-icon-modern">
                         <img src="https://static.tildacdn.pub/tild3038-6631-4866-b334-656161333063/png-clipart-car-jeep.png" alt="Автосервис">
                     </div>
                     <h3>Автосервис</h3>
+                    <p>Сопутствующий ремонт и обслуживание.</p>
                 </div>
 
-                <div class="service-card">
-                    <div class="service-icon">
+                <div class="service-card-modern">
+                    <div class="service-icon-modern">
                         <img src="https://static.tildacdn.pub/tild3963-3564-4538-b731-316430313339/orig-no-bg-preview_c.png" alt="Реставрация">
                     </div>
-                    <h3>Реставрация, покраска дисков</h3>
+                    <h3>Реставрация дисков</h3>
+                    <p>Покраска и полировка дисков.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Location Section с обновленной картой -->
+    <!-- Location Section - ИСПРАВЛЕННАЯ КАРТА -->
     <section class="location" id="location">
         <div class="container">
             <div class="location-info">
                 <h3 class="location-title">Наш адрес</h3>
-                <p class="address">г. Долгопрудный, Госпитальная улица 1Б</p>
+                <p class="address">г. Долгопрудный, мкр. Хлебниково, Новое шоссе 14</p>
 
                 <div class="schedule">
                     <div class="schedule-item">
@@ -848,24 +1251,32 @@
                     </div>
                 </div>
 
-                <a href="https://go.2gis.com/RRjqj" target="_blank" class="btn map-btn">2ГИС</a>
+                <div style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center;">
+                    <a href="https://go.2gis.com/RRjqj" target="_blank" class="btn map-btn">2ГИС</a>
+
+                    <!-- УЛУЧШЕННАЯ КНОПКА ДЛЯ ЯНДЕКС КАРТ -->
+                    <a href="https://yandex.ru/maps/?rtext=~55.970832,37.507266&rtt=auto" target="_blank" class="yandex-route-btn">
+                        <svg viewBox="0 0 24 24" width="24" height="24">
+                            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                        </svg>
+                        Построить маршрут в Яндекс Картах
+                        <svg viewBox="0 0 24 24" width="20" height="20">
+                            <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+                        </svg>
+                    </a>
+                </div>
             </div>
 
-            <!-- Обновленная карта Google с красивым дизайном -->
-            <div class="map-container">
-                <div class="google-map">
+            <!-- ПРОСТАЯ КАРТА GOOGLE БЕЗ МЕТОК -->
+            <div class="map-container-simple">
+                <div class="google-map-simple">
                     <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d646.2195066331548!2d37.50726662389101!3d55.97083208094146!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1sru!2sru!4v1764502773334!5m2!1sru!2sru"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d646.2195066331548!2d37.50726662389101!3d55.97083208094146!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46b537f7b5b5b5b5%3A0x5b5b5b5b5b5b5b5b!2z0J3QvtCy0L7QtSDQmNC60YjQtdCy0L4sIDE0LCDQlNC-0LvQs9C-0L_Rg9C00L3Ri9C5LCDQnNC-0YHQutC-0LLRgdC60LDRjyDQvtCx0LvQsNGB0YLRjCwg0KDQvtGB0YHQuNGPLCAxNDE3MDc!5e1!3m2!1sru!2sru!4v1710000000000!5m2!1sru!2sru"
                         allowfullscreen=""
                         loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade">
+                        referrerpolicy="no-referrer-when-downgrade"
+                        title="Карта с местоположением Шины Макс">
                     </iframe>
-                </div>
-                <div class="map-overlay">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-                    </svg>
-                    <span>Мы здесь</span>
                 </div>
             </div>
         </div>
@@ -875,7 +1286,7 @@
     <section class="contact" id="contact">
         <div class="container">
             <div class="phone">+7 906 786-70-46</div>
-            <p class="contact-address">мкр. Хлебниково, Долгопрудный, Госпитальная улица 1Б.</p>
+            <p class="contact-address">мкр. Хлебниково, Долгопрудный, Новое шоссе 14.</p>
 
             <div class="social-links">
                 <a href="tel:+79067867046" class="social-link" aria-label="Позвонить">
@@ -892,7 +1303,7 @@
         </div>
     </section>
 
-    <!-- Подвал -->
+    <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-content">
@@ -905,8 +1316,7 @@
                     <h3>Контакты</h3>
                     <ul>
                         <li>📞 +7 906 786-70-46</li>
-                        <li>📍 г. Долгопрудный, Госпитальная улица 1Б</li>
-
+                        <li>📍 мкр. Хлебниково, Новое шоссе 14</li>
                     </ul>
                 </div>
 
