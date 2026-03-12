@@ -130,27 +130,29 @@
             transition: 0.3s;
         }
 
-        /* Button */
+        /* Кнопки */
         .btn {
             display: inline-block;
-            padding: 15px 40px;
+            padding: 12px 30px;
             background: #2D5BFF;
             color: #fff;
             text-decoration: none;
             border-radius: 30px;
             font-weight: 600;
-            border: 3px solid #2D5BFF;
+            border: 2px solid #2D5BFF;
             transition: all 0.3s ease;
-            margin: 30px 0;
+            font-size: 1rem;
+            line-height: 1.2;
             cursor: pointer;
+            text-align: center;
         }
 
         .btn:hover {
             background: transparent;
             color: #fff;
             border-color: #fff;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
         }
 
         /* Footer */
@@ -532,42 +534,57 @@
             .map-btn {
                 background: #1f5bff;
                 color: #fff;
-                border: none;
-                padding: 12px 35px;
+                border: 2px solid #1f5bff;
+                padding: 10px 25px;
                 border-radius: 40px;
                 font-weight: 600;
+                font-size: 0.95rem;
                 transition: all 0.3s ease;
-                border: 2px solid transparent;
-                margin-right: 15px;
+                text-decoration: none;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                height: 42px;
+                line-height: 1;
+                margin-right: 10px;
+            }
+
+            .map-btn:hover {
+                background: transparent;
+                color: #1f5bff;
+                transform: translateY(-2px);
+                box-shadow: 0 5px 15px rgba(31, 91, 255, 0.3);
             }
 
             .yandex-route-btn {
                 background: #FC3F1D;
                 color: white;
                 border: 2px solid #FC3F1D;
-                padding: 12px 35px;
+                padding: 10px 25px;
                 border-radius: 40px;
                 font-weight: 600;
-                font-size: 1rem;
+                font-size: 0.95rem;
                 transition: all 0.3s ease;
                 text-decoration: none;
                 display: inline-flex;
                 align-items: center;
-                gap: 10px;
-                box-shadow: 0 5px 15px rgba(252, 63, 29, 0.3);
-                margin-left: 10px;
+                justify-content: center;
+                gap: 8px;
+                height: 42px;
+                line-height: 1;
+                box-shadow: 0 3px 10px rgba(252, 63, 29, 0.2);
             }
 
             .yandex-route-btn:hover {
                 background: transparent;
                 color: #FC3F1D;
-                transform: translateY(-3px) scale(1.05);
-                box-shadow: 0 15px 30px rgba(252, 63, 29, 0.4);
+                transform: translateY(-2px);
+                box-shadow: 0 8px 20px rgba(252, 63, 29, 0.3);
             }
 
             .yandex-route-btn svg {
-                width: 20px;
-                height: 20px;
+                width: 18px;
+                height: 18px;
                 fill: currentColor;
             }
 
@@ -668,11 +685,20 @@
                 font-weight: 700;
                 margin-bottom: 20px;
                 color: #000;
+                display: inline-block;
             }
 
             .phone a {
                 text-decoration: none;
                 color: inherit;
+                display: inline-block;
+                padding: 5px 15px;
+                transition: all 0.3s ease;
+            }
+
+            .phone a:hover {
+                color: #1f5bff;
+                transform: translateY(-2px);
             }
 
             .contact-address {
@@ -706,6 +732,11 @@
                 transform: translateY(-5px) scale(1.1);
                 box-shadow: 0 10px 20px rgba(31, 91, 255, 0.4);
             }
+
+            .social-link svg {
+                width: 24px;
+                height: 24px;
+            }
         }
 
         /* ========== ДИЗАЙН ДЛЯ ТЕЛЕФОНА (ширина ≤ 768px) ========== */
@@ -713,8 +744,6 @@
             body {
                 padding-top: 60px;
                 font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
-                -webkit-font-smoothing: antialiased;
-                -moz-osx-font-smoothing: grayscale;
             }
 
             .container {
@@ -763,6 +792,51 @@
 
             .brand-text {
                 font-size: 1.2rem;
+            }
+
+            /* АНИМАЦИИ ДЛЯ ТЕЛЕФОНА - ИСПРАВЛЕНО (остаются видимыми) */
+            .fade-up {
+                opacity: 0;
+                transform: translateY(20px);
+                transition: opacity 0.6s ease, transform 0.6s ease;
+            }
+
+            .fade-up.visible {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            .fade-left {
+                opacity: 0;
+                transform: translateX(-20px);
+                transition: opacity 0.6s ease, transform 0.6s ease;
+            }
+
+            .fade-left.visible {
+                opacity: 1;
+                transform: translateX(0);
+            }
+
+            .fade-right {
+                opacity: 0;
+                transform: translateX(20px);
+                transition: opacity 0.6s ease, transform 0.6s ease;
+            }
+
+            .fade-right.visible {
+                opacity: 1;
+                transform: translateX(0);
+            }
+
+            .scale-in {
+                opacity: 0;
+                transform: scale(0.9);
+                transition: opacity 0.6s ease, transform 0.6s ease;
+            }
+
+            .scale-in.visible {
+                opacity: 1;
+                transform: scale(1);
             }
 
             /* Hero Section для телефона */
@@ -1003,35 +1077,48 @@
 
             .map-btn, .yandex-route-btn {
                 width: 100%;
-                text-align: center;
-                padding: 12px 15px;
-                font-size: 0.95rem;
-                margin: 5px 0;
+                padding: 14px 20px;
+                font-size: 1rem;
+                border-radius: 40px;
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                gap: 8px;
-                border-radius: 30px;
+                gap: 10px;
+                text-decoration: none;
+                font-weight: 600;
+                transition: all 0.3s ease;
+                margin-bottom: 10px;
+                height: 48px;
             }
 
             .map-btn {
                 background: #1f5bff;
-                color: #fff;
-                border: none;
-                margin-bottom: 8px;
+                color: white;
+                border: 2px solid #1f5bff;
+            }
+
+            .map-btn:active {
+                transform: scale(0.98);
+                background: transparent;
+                color: #1f5bff;
             }
 
             .yandex-route-btn {
                 background: #FC3F1D;
                 color: white;
-                text-decoration: none;
                 border: 2px solid #FC3F1D;
                 box-shadow: 0 5px 15px rgba(252, 63, 29, 0.3);
             }
 
+            .yandex-route-btn:active {
+                transform: scale(0.98);
+                background: transparent;
+                color: #FC3F1D;
+            }
+
             .yandex-route-btn svg {
-                width: 18px;
-                height: 18px;
+                width: 20px;
+                height: 20px;
                 fill: currentColor;
             }
 
@@ -1109,11 +1196,21 @@
                 font-weight: 700;
                 margin-bottom: 10px;
                 color: #000;
+                display: inline-block;
             }
 
             .phone a {
                 text-decoration: none;
                 color: inherit;
+                display: inline-block;
+                padding: 8px 20px;
+                border-radius: 40px;
+                transition: all 0.3s ease;
+            }
+
+            .phone a:active {
+                background: rgba(31, 91, 255, 0.1);
+                transform: scale(0.98);
             }
 
             .contact-address {
@@ -1131,8 +1228,8 @@
             }
 
             .social-link {
-                width: 45px;
-                height: 45px;
+                width: 48px;
+                height: 48px;
                 background: #000;
                 border-radius: 50%;
                 display: flex;
@@ -1179,53 +1276,6 @@
 
             .footer-bottom {
                 font-size: 0.8rem;
-            }
-        }
-
-        /* Анимации при скролле для телефона */
-        @media (max-width: 768px) {
-            .fade-up {
-                opacity: 0;
-                transform: translateY(20px);
-                transition: opacity 0.6s ease, transform 0.6s ease;
-            }
-
-            .fade-up.visible {
-                opacity: 1;
-                transform: translateY(0);
-            }
-
-            .fade-left {
-                opacity: 0;
-                transform: translateX(-20px);
-                transition: opacity 0.6s ease, transform 0.6s ease;
-            }
-
-            .fade-left.visible {
-                opacity: 1;
-                transform: translateX(0);
-            }
-
-            .fade-right {
-                opacity: 0;
-                transform: translateX(20px);
-                transition: opacity 0.6s ease, transform 0.6s ease;
-            }
-
-            .fade-right.visible {
-                opacity: 1;
-                transform: translateX(0);
-            }
-
-            .scale-in {
-                opacity: 0;
-                transform: scale(0.9);
-                transition: opacity 0.6s ease, transform 0.6s ease;
-            }
-
-            .scale-in.visible {
-                opacity: 1;
-                transform: scale(1);
             }
         }
     </style>
@@ -1386,8 +1436,8 @@
                     </div>
                 </div>
 
-                <div style="display: flex; flex-wrap: wrap; gap: 10px;">
-                    <a href="https://go.2gis.com/RRjqj" target="_blank" class="btn map-btn" data-transition>2ГИС</a>
+                <div style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center;">
+                    <a href="https://go.2gis.com/RRjqj" target="_blank" class="map-btn" data-transition>2ГИС</a>
 
                     <a href="https://yandex.ru/maps/?rtext=~55.970832,37.507266&rtt=auto" target="_blank" class="yandex-route-btn" data-transition>
                         <svg viewBox="0 0 24 24">
@@ -1509,25 +1559,33 @@
         });
     });
 
-    // Анимации при скролле (только для телефона)
+    // Анимации при скролле для телефона - элементы ПОЯВЛЯЮТСЯ и ОСТАЮТСЯ
     if (window.innerWidth <= 768) {
         const fadeElements = document.querySelectorAll('.fade-up, .fade-left, .fade-right, .scale-in');
 
+        // Функция проверки видимости
         const checkVisibility = () => {
             fadeElements.forEach(element => {
                 const elementTop = element.getBoundingClientRect().top;
-                const elementBottom = element.getBoundingClientRect().bottom;
                 const windowHeight = window.innerHeight;
 
-                if (elementTop < windowHeight - 50 && elementBottom > 0) {
+                // Если элемент появился в области видимости
+                if (elementTop < windowHeight - 30) {
                     element.classList.add('visible');
                 }
+                // НЕ УБИРАЕМ КЛАСС, когда элемент уходит - он остается visible
             });
         };
 
+        // Проверяем сразу при загрузке
         window.addEventListener('load', checkVisibility);
+        // Проверяем при скролле
         window.addEventListener('scroll', checkVisibility);
+        // Проверяем при изменении размера окна
         window.addEventListener('resize', checkVisibility);
+
+        // Запускаем сразу, чтобы видимые элементы получили класс
+        setTimeout(checkVisibility, 100);
     }
 
     // Анимация перехода по ссылкам
