@@ -2,19 +2,8 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Каталог шин - Шины Макс</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-    <link rel="icon" href="https://static.tildacdn.pub/tild6537-6264-4537-a536-366430656136/2025-05-31_23-10-58_.png" type="image/png">
-
-    <link rel="icon" type="image/png" href="/favicon/favicon-96x96.png" sizes="96x96" />
-    <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
-    <link rel="icon" type="image/x-icon" href="/favicon/favicon.ico">
-    <!-- <link rel="shortcut icon" href="/favicon/favicon.ico" /> -->
-    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
-    <link rel="manifest" href="/favicon/site.webmanifest" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Каталог шин | Шины Макс (реальный ассортимент)</title>
     <style>
         * {
             margin: 0;
@@ -22,917 +11,1088 @@
             box-sizing: border-box;
         }
 
-        :root {
-            --primary: #2D5BFF;
-            --primary-dark: #1E40BF;
-            --secondary: #FF6B35;
-            --dark: #1A1A1A;
-            --light: #FFFFFF;
-            --gray: #6B7280;
-            --gray-light: #F8FAFC;
-            --border: #E5E7EB;
-        }
-
         body {
-            font-family: 'Inter', sans-serif;
-            line-height: 1.6;
-            color: var(--dark);
-            background: var(--gray-light);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            background: #f5f5f5;
+            color: #333;
         }
 
-        .container {
-            max-width: 1200px;
+        /* Навигация */
+        .navbar {
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 12px 0;
+        }
+
+        .nav-container {
+            max-width: 1400px;
             margin: 0 auto;
             padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
 
-        /* Header */
-        .header {
-            background: var(--light);
-            box-shadow: 0 2px 20px rgba(0,0,0,0.08);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
         }
 
-        .nav {
+        .nav-logo {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #2D5BFF;
+        }
+
+        .brand-text {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #2D5BFF;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+            padding: 8px 20px;
+            border-radius: 30px;
+            transition: 0.3s;
+            background: #f0f0f0;
+        }
+
+        .nav-link:hover {
+            background: #2D5BFF;
+            color: #fff;
+        }
+
+        /* Контейнер */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 25px 20px;
+        }
+
+        /* Заголовок */
+        .catalog-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 0;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 15px;
         }
 
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary);
-            text-decoration: none;
+        .catalog-header h1 {
+            font-size: 2rem;
+            color: #333;
+        }
+
+        .catalog-header h1 span {
+            color: #2D5BFF;
+        }
+
+        /* Поиск и фильтры */
+        .catalog-controls {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .search-box {
             display: flex;
             align-items: center;
-            gap: 10px;
+            background: #fff;
+            border: 2px solid #e0e0e0;
+            border-radius: 40px;
+            overflow: hidden;
+            transition: 0.3s;
         }
 
-        .logo-img {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            object-fit: contain;
-            border: 2px solid var(--primary);
+        .search-box:focus-within {
+            border-color: #2D5BFF;
         }
 
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
+        .search-box input {
+            padding: 10px 20px;
+            border: none;
+            font-size: 0.95rem;
+            width: 250px;
+            outline: none;
         }
 
-        .nav-links a {
-            text-decoration: none;
-            color: var(--dark);
-            font-weight: 500;
-            transition: color 0.3s ease;
+        .search-box button {
+            padding: 10px 25px;
+            background: #2D5BFF;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: 0.3s;
+            height: 100%;
         }
 
-        .nav-links a:hover {
-            color: var(--primary);
+        .search-box button:hover {
+            background: #1a4ad0;
         }
 
-        /* Hero Section */
-        .hero {
-            padding: 140px 0 60px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            color: var(--light);
-            text-align: center;
+        .filter-select {
+            padding: 10px 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 40px;
+            font-size: 0.95rem;
+            background: #fff;
+            cursor: pointer;
+            transition: 0.3s;
+            min-width: 140px;
         }
 
-        .hero h1 {
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
+        .filter-select:hover {
+            border-color: #2D5BFF;
         }
 
-        .hero p {
-            font-size: 1.2rem;
-            opacity: 0.9;
-            max-width: 600px;
-            margin: 0 auto;
+        .filter-select:focus {
+            outline: none;
+            border-color: #2D5BFF;
         }
 
-        /* Catalog Section */
-        .catalog {
-            padding: 80px 0;
-            background: var(--light);
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 3rem;
-            color: var(--dark);
-        }
-
+        /* Сетка товаров - ДЕСКТОП */
         .products-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-bottom: 4rem;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
         }
 
+        /* Карточка товара - ДЕСКТОП */
         .product-card {
-            background: var(--light);
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
-            border: 1px solid var(--border);
-            transition: all 0.3s ease;
+            background: #fff;
+            border-radius: 16px;
             overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
         }
 
         .product-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            box-shadow: 0 15px 30px rgba(45, 91, 255, 0.12);
         }
 
         .product-image {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            border-bottom: 1px solid var(--border);
+            background: linear-gradient(145deg, #f8f8f8, #eeeeee);
+            padding: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 200px;
         }
 
-        .product-content {
-            padding: 1.5rem;
+        .product-image img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+
+        .product-info {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .product-brand {
+            font-size: 0.8rem;
+            color: #2D5BFF;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
         }
 
         .product-title {
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: var(--dark);
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #333;
             line-height: 1.4;
+            margin-bottom: 5px;
         }
 
-        .product-description {
-            color: var(--gray);
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
-        }
-
-        .product-details {
-            margin-bottom: 1.5rem;
-        }
-
-        .detail-item {
+        .product-specs {
             display: flex;
-            justify-content: space-between;
-            padding: 0.5rem 0;
-            border-bottom: 1px solid var(--border);
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 5px 0;
         }
 
-        .detail-item:last-child {
-            border-bottom: none;
-        }
-
-        .detail-label {
-            color: var(--gray);
-            font-weight: 500;
-        }
-
-        .detail-value {
-            color: var(--dark);
-            font-weight: 600;
+        .product-specs span {
+            background: #f0f0f0;
+            padding: 4px 12px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            color: #555;
         }
 
         .product-price {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 1.5rem;
-            padding-top: 1.5rem;
-            border-top: 2px solid var(--border);
-        }
-
-        .price {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             font-weight: 700;
-            color: var(--primary);
+            color: #2D5BFF;
+            margin: 10px 0 5px;
         }
 
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.8rem 1.5rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            font-size: 0.9rem;
+        .product-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
         }
 
         .btn-primary {
-            background: var(--primary);
-            color: var(--light);
-        }
-
-        .btn-primary:hover {
-            background: var(--primary-dark);
-            transform: translateY(-2px);
-        }
-
-        /* Contact Section */
-        .contact {
-            padding: 80px 0;
-            background: var(--gray-light);
+            flex: 1;
+            padding: 12px;
+            background: #2D5BFF;
+            color: #fff;
+            border: none;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: 0.3s;
+            text-decoration: none;
+            display: inline-block;
             text-align: center;
         }
 
-        .contact-info {
-            background: var(--light);
-            padding: 3rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
-            max-width: 600px;
-            margin: 0 auto;
+        .btn-primary:hover {
+            background: #1a4ad0;
         }
 
-        .phone {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: var(--primary);
+        .btn-primary:active {
+            transform: scale(0.98);
         }
 
-        .address {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            color: var(--gray);
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-
-        .social-link {
-            width: 50px;
-            height: 50px;
-            background: var(--primary);
+        .btn-favorite {
+            width: 44px;
+            height: 44px;
+            background: #f0f0f0;
+            border: none;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--light);
+            cursor: pointer;
+            transition: 0.3s;
+            font-size: 1.2rem;
+            color: #666;
+        }
+
+        .btn-favorite.active {
+            background: #ffe0e0;
+            color: #ff4d4d;
+        }
+
+        .btn-favorite:hover {
+            background: #ffe0e0;
+            color: #ff4d4d;
+        }
+
+        /* Статусы и бейджи */
+        .product-badges {
+            display: flex;
+            gap: 5px;
+            margin: 5px 0;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: #fff;
+            text-transform: uppercase;
+        }
+
+        .badge.used {
+            background: #6B7280;
+        }
+
+        .badge.new {
+            background: #10B981;
+        }
+
+        .badge.summer {
+            background: #F59E0B;
+        }
+
+        .badge.winter {
+            background: #3B82F6;
+        }
+
+        .product-tread {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .product-tread strong {
+            color: #333;
+        }
+
+        /* Пагинация */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            margin: 50px 0 20px;
+            flex-wrap: wrap;
+        }
+
+        .pagination a {
             text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .social-link:hover {
-            background: var(--primary-dark);
-            transform: translateY(-3px);
-        }
-
-        /* Footer */
-        .footer {
-            background: var(--dark);
-            color: var(--light);
+            padding: 8px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 30px;
+            color: #666;
+            font-weight: 600;
+            transition: 0.3s;
+            min-width: 40px;
             text-align: center;
-            padding: 3rem 0;
         }
 
-        /* Responsive */
+        .pagination a:hover,
+        .pagination a.active {
+            background: #2D5BFF;
+            color: #fff;
+            border-color: #2D5BFF;
+        }
+
+        /* Футер */
+        footer {
+            background: #1a1a1a;
+            color: #fff;
+            padding: 40px 0 20px;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 8px;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            margin-top: 30px;
+            border-top: 1px solid #333;
+            color: #888;
+            font-size: 0.85rem;
+        }
+
+        /* Информация о количестве товаров */
+        .results-info {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* ========== МОБИЛЬНАЯ ВЕРСИЯ ========== */
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.2rem;
+            .nav-container {
+                padding: 0 15px;
             }
 
-            .section-title {
-                font-size: 2rem;
+            .brand-text {
+                font-size: 1.1rem;
             }
 
+            .nav-logo {
+                width: 36px;
+                height: 36px;
+            }
+
+            .nav-link {
+                padding: 6px 15px;
+                font-size: 0.9rem;
+            }
+
+            .container {
+                padding: 15px;
+            }
+
+            .catalog-header {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 15px;
+                margin-bottom: 20px;
+            }
+
+            .catalog-header h1 {
+                font-size: 1.6rem;
+                text-align: center;
+            }
+
+            .catalog-controls {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .search-box {
+                width: 100%;
+            }
+
+            .search-box input {
+                width: 1px;
+                flex: 1;
+            }
+
+            .filter-select {
+                width: 100%;
+            }
+
+            /* Сетка для телефона - 2 колонки */
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+                margin: 20px 0;
+            }
+
+            /* Компактные карточки */
+            .product-image {
+                height: 130px;
+                padding: 15px;
+            }
+
+            .product-info {
+                padding: 12px;
+                gap: 4px;
+            }
+
+            .product-brand {
+                font-size: 0.7rem;
+            }
+
+            .product-title {
+                font-size: 0.9rem;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                line-height: 1.3;
+            }
+
+            .product-specs {
+                gap: 5px;
+            }
+
+            .product-specs span {
+                padding: 3px 8px;
+                font-size: 0.7rem;
+            }
+
+            .product-badges {
+                flex-wrap: wrap;
+            }
+
+            .badge {
+                padding: 2px 6px;
+                font-size: 0.65rem;
+            }
+
+            .product-tread {
+                font-size: 0.75rem;
+            }
+
+            .product-price {
+                font-size: 1.1rem;
+                margin: 5px 0 0;
+            }
+
+            .product-actions {
+                margin-top: 8px;
+                gap: 6px;
+            }
+
+            .btn-primary {
+                padding: 8px;
+                font-size: 0.8rem;
+            }
+
+            .btn-favorite {
+                width: 36px;
+                height: 36px;
+                font-size: 1rem;
+            }
+
+            .pagination {
+                margin: 30px 0 10px;
+                gap: 5px;
+            }
+
+            .pagination a {
+                padding: 6px 12px;
+                font-size: 0.85rem;
+                min-width: 32px;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 25px;
+                text-align: center;
+            }
+
+            .footer-column h3::after {
+                content: '';
+                display: block;
+                width: 50px;
+                height: 2px;
+                background: #2D5BFF;
+                margin: 8px auto 0;
+            }
+        }
+
+        /* Для очень маленьких телефонов */
+        @media (max-width: 380px) {
             .products-grid {
                 grid-template-columns: 1fr;
             }
 
-            .nav-links {
-                display: none;
+            .product-image {
+                height: 160px;
             }
 
-            .phone {
-                font-size: 1.5rem;
+            .product-title {
+                font-size: 1rem;
             }
-        }
-
-        /* Status badges */
-        .status-new {
-            background: #10B981;
-            color: white;
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-
-        .status-used {
-            background: #6B7280;
-            color: white;
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-
-        .season-summer {
-            background: #F59E0B;
-            color: white;
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-
-        .season-winter {
-            background: #3B82F6;
-            color: white;
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <div class="container">
-            <nav class="nav">
-                <a href="/" class="logo">
-                    <img src="https://static.tildacdn.pub/tild6537-6264-4537-a536-366430656136/2025-05-31_23-10-58_.png" alt="Шины Макс" class="logo-img">
-                    Шины Макс
-                </a>
-                <ul class="nav-links">
-                    <li><a href="/">Главная</a></li>
-                    <li><a href="#catalog">Каталог</a></li>
-                    <li><a href="#contact">Контакты</a></li>
+    <!-- Навигация -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="nav-brand">
+                <img src="https://static.tildacdn.pub/tild6537-6264-4537-a536-366430656136/2025-05-31_23-10-58_.png" alt="Шины Макс" class="nav-logo">
+                <span class="brand-text">Шины Макс</span>
+            </a>
+            <a href="/" class="nav-link">На главную</a>
+        </div>
+    </nav>
+
+    <!-- Основной контент -->
+    <div class="container">
+        <!-- Заголовок и поиск -->
+        <div class="catalog-header">
+            <div>
+                <h1>Каталог <span>шин</span></h1>
+                <span class="results-info" id="resultsCount">15 товаров</span>
+            </div>
+
+            <div class="catalog-controls">
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="Поиск по названию...">
+                    <button id="searchBtn">Найти</button>
+                </div>
+
+                <select class="filter-select" id="seasonFilter">
+                    <option value="all">Все сезоны</option>
+                    <option value="summer">Лето</option>
+                    <option value="winter">Зима</option>
+                </select>
+
+                <select class="filter-select" id="sortFilter">
+                    <option value="default">По умолчанию</option>
+                    <option value="priceAsc">Сначала дешевле</option>
+                    <option value="priceDesc">Сначала дороже</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Сетка товаров -->
+        <div class="products-grid" id="productsGrid">
+            <!-- Товары будут загружены через JavaScript -->
+        </div>
+
+        <!-- Пагинация -->
+        <div class="pagination" id="pagination">
+            <!-- Пагинация через JS -->
+        </div>
+    </div>
+
+    <!-- Футер -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Шины Макс</h3>
+                <ul>
+                    <li>Профессиональный шиномонтаж</li>
+                    <li>Более 1000 шин в наличии</li>
+                    <li>Работаем с 2013 года</li>
                 </ul>
-            </nav>
-        </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <h1>Каталог шин</h1>
-            <p>Широкий выбор качественных шин от проверенных производителей</p>
-        </div>
-    </section>
-
-    <!-- Catalog Section -->
-    <section id="catalog" class="catalog">
-        <div class="container">
-            <h2 class="section-title">Наш ассортимент</h2>
-
-            <div class="products-grid">
-                <!-- Bridgestone Dueler H/P Sport 275/40 R20 -->
-                <div class="product-card">
-                    <img src="https://static.tildacdn.pub/tild3666-3464-4434-a333-353339303930/2025-11-22_09-39-52.png" alt="Bridgestone Dueler H/P Sport" class="product-image">
-                    <div class="product-content">
-                        <h3 class="product-title">Bridgestone Dueler H/P Sport 275/40 R20</h3>
-                        <div class="product-details">
-                            <div class="detail-item">
-                                <span class="detail-label">Состояние:</span>
-                                <span class="detail-label status-used">Б/у</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Протектор:</span>
-                                <span class="detail-value">6.5 мм</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Год:</span>
-                                <span class="detail-value">2019</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Сезон:</span>
-                                <span class="detail-label season-summer">Летние</span>
-                            </div>
-                        </div>
-                        <div class="product-price">
-                            <div class="price">14 000 ₽</div>
-                            <a href="https://www.avito.ru/dolgoprudnyy/zapchasti_i_aksessuary/bridgestone_dueler_hp_sport_27540_r20_7375622243" target="_blank" class="btn btn-primary">
-                                Подробнее
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Continental ContiPremiumContact 6 245/45 R19 -->
-                <div class="product-card">
-                    <img src="https://static.tildacdn.pub/tild6564-3733-4934-b239-336664303631/2025-06-15_13-22-38.png" alt="Continental ContiPremiumContact 6" class="product-image">
-                    <div class="product-content">
-                        <h3 class="product-title">Continental ContiPremiumContact 6 245/45 R19</h3>
-                        <div class="product-details">
-                            <div class="detail-item">
-                                <span class="detail-label">Состояние:</span>
-                                <span class="detail-label status-used">Б/у</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Протектор:</span>
-                                <span class="detail-value">5.5 мм</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Год:</span>
-                                <span class="detail-value">2021</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Сезон:</span>
-                                <span class="detail-label season-summer">Летние</span>
-                            </div>
-                        </div>
-                        <div class="product-price">
-                            <div class="price">26 000 ₽</div>
-                            <a href="https://www.avito.ru/dolgoprudnyy/zapchasti_i_aksessuary/continental_contipremiumcontact_6_24545_r19_7407237554" target="_blank" class="btn btn-primary">
-                                Подробнее
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Continental ContiWinterContact TS 830 P 215/60 R16 -->
-                <div class="product-card">
-                    <img src="https://static.tildacdn.pub/tild6564-3733-4934-b239-336664303631/2025-06-15_13-22-38.png" alt="Continental ContiWinterContact TS 830 P" class="product-image">
-                    <div class="product-content">
-                        <h3 class="product-title">Continental ContiWinterContact TS 830 P 215/60 R16</h3>
-                        <div class="product-details">
-                            <div class="detail-item">
-                                <span class="detail-label">Состояние:</span>
-                                <span class="detail-label status-used">Б/у</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Протектор:</span>
-                                <span class="detail-value">4 мм</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Год:</span>
-                                <span class="detail-value">2020</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Сезон:</span>
-                                <span class="detail-label season-winter">Зимние</span>
-                            </div>
-                        </div>
-                        <div class="product-price">
-                            <div class="price">4 000 ₽</div>
-                            <a href="https://www.avito.ru/dolgoprudnyy/zapchasti_i_aksessuary/continental_contiwintercontact_ts_830_p_21560_r16_3599973341" target="_blank" class="btn btn-primary">
-                                Подробнее
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Continental ControlContact Tour A/S Plus 215/50 R17 -->
-                <div class="product-card">
-                    <img src="https://static.tildacdn.pub/tild3237-6532-4164-a562-323365626132/2025-06-23_08-18-14.png" alt="Continental ControlContact Tour A/S Plus" class="product-image">
-                    <div class="product-content">
-                        <h3 class="product-title">Continental ControlContact Tour A/S Plus 215/50 R17</h3>
-                        <div class="product-details">
-                            <div class="detail-item">
-                                <span class="detail-label">Состояние:</span>
-                                <span class="detail-label status-used">Б/у</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Протектор:</span>
-                                <span class="detail-value">5.5 мм</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Год:</span>
-                                <span class="detail-value">2019</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Сезон:</span>
-                                <span class="detail-label season-summer">Летние</span>
-                            </div>
-                        </div>
-                        <div class="product-price">
-                            <div class="price">5 000 ₽</div>
-                            <a href="https://www.avito.ru/dolgoprudnyy/zapchasti_i_aksessuary/continental_controlcontact_tour_as_plus_21550_r17_7375915321" target="_blank" class="btn btn-primary">
-                                Подробнее
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-
-                <!-- Formula Energy 225/65 R17 -->
-                <div class="product-card">
-                    <img src="https://static.tildacdn.pub/tild6138-3236-4337-a638-386632653062/2025-06-23_08-03-25.png" alt="Formula Energy" class="product-image">
-                    <div class="product-content">
-                        <h3 class="product-title">Formula Energy 225/65 R17</h3>
-                        <div class="product-details">
-                            <div class="detail-item">
-                                <span class="detail-label">Состояние:</span>
-                                <span class="detail-label status-new">Новые</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Год:</span>
-                                <span class="detail-value">2024</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Сезон:</span>
-                                <span class="detail-label season-summer">Летние</span>
-                            </div>
-                        </div>
-                        <div class="product-price">
-                            <div class="price">38 000 ₽</div>
-                            <a href="https://www.avito.ru/dolgoprudnyy/zapchasti_i_aksessuary/formula_energy_22565_r17_7407619230" target="_blank" class="btn btn-primary">
-                                Подробнее
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Goodyear Fortera 265/60 R18 -->
-                <div class="product-card">
-                    <img src="https://static.tildacdn.pub/tild3039-6438-4436-b635-623038383039/2025-11-22_09-24-14.png" alt="Goodyear Fortera" class="product-image">
-                    <div class="product-content">
-                        <h3 class="product-title">Goodyear Fortera 265/60 R18</h3>
-                        <div class="product-details">
-                            <div class="detail-item">
-                                <span class="detail-label">Состояние:</span>
-                                <span class="detail-label status-used">Б/у</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Протектор:</span>
-                                <span class="detail-value">5 мм</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Год:</span>
-                                <span class="detail-value">2020</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Сезон:</span>
-                                <span class="detail-label season-summer">Летние</span>
-                            </div>
-                        </div>
-                        <div class="product-price">
-                            <div class="price">8 000 ₽</div>
-                            <a href="https://www.avito.ru/dolgoprudnyy/zapchasti_i_aksessuary/goodyear_fortera_26560_r18_3375873104" target="_blank" class="btn btn-primary">
-                                Подробнее
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- KAMA Kаma-Euro LCV-131 205/65 R16C -->
-                <div class="product-card">
-                    <img src="https://static.tildacdn.pub/tild3236-6139-4935-b765-623330303832/2025-11-22_09-45-23.png" alt="КАМА Kаma-Euro LCV-131" class="product-image">
-                    <div class="product-content">
-                        <h3 class="product-title">КАМА Kаma-Euro LCV-131 205/65 R16C</h3>
-                        <div class="product-details">
-                            <div class="detail-item">
-                                <span class="detail-label">Состояние:</span>
-                                <span class="detail-label status-used">Б/у</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Протектор:</span>
-                                <span class="detail-value">8 мм</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Год:</span>
-                                <span class="detail-value">2022</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Сезон:</span>
-                                <span class="detail-label season-summer">Летние</span>
-                            </div>
-                        </div>
-                        <div class="product-price">
-                            <div class="price">12 000 ₽</div>
-                            <a href="https://www.avito.ru/dolgoprudnyy/zapchasti_i_aksessuary/kama_kama-euro_lcv-131_20565_r16c_4559868614" target="_blank" class="btn btn-primary">
-                                Подробнее
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Kumho I'Zen KW31 225/60 R17 -->
-                <div class="product-card">
-                    <img src="https://static.tildacdn.pub/tild3636-3766-4739-b436-366135616663/2025-11-22_09-37-30.png" alt="Kumho I'Zen KW31" class="product-image">
-                    <div class="product-content">
-                        <h3 class="product-title">Kumho I'Zen KW31 225/60 R17</h3>
-                        <div class="product-details">
-                            <div class="detail-item">
-                                <span class="detail-label">Состояние:</span>
-                                <span class="detail-label status-used">Б/у</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Протектор:</span>
-                                <span class="detail-value">4 мм</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Год:</span>
-                                <span class="detail-value">2016</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Сезон:</span>
-                                <span class="detail-label season-winter">Зимние</span>
-                            </div>
-                        </div>
-                        <div class="product-price">
-                            <div class="price">4 500 ₽</div>
-                            <a href="https://www.avito.ru/dolgoprudnyy/zapchasti_i_aksessuary/kumho_izen_kw31_22560_r17_2863941477" target="_blank" class="btn btn-primary">
-                                Подробнее
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Mastercraft Courser A/T 285/60 R18 -->
-                <div class="product-card">
-                    <img src="https://static.tildacdn.pub/tild3362-6165-4531-b032-343734623935/2025-11-22_09-36-42.png" alt="Mastercraft Courser A/T" class="product-image">
-                    <div class="product-content">
-                        <h3 class="product-title">Mastercraft Courser A/T 285/60 R18</h3>
-                        <div class="product-details">
-                            <div class="detail-item">
-                                <span class="detail-label">Состояние:</span>
-                                <span class="detail-label status-used">Б/у</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Протектор:</span>
-                                <span class="detail-value">4.5 мм</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Год:</span>
-                                <span class="detail-value">2020</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Сезон:</span>
-                                <span class="detail-label season-summer">Летние</span>
-                            </div>
-                        </div>
-                        <div class="product-price">
-                            <div class="price">5 000 ₽</div>
-                            <a href="https://www.avito.ru/dolgoprudnyy/zapchasti_i_aksessuary/mastercraft_courser_at_28560_r18_3376568673" target="_blank" class="btn btn-primary">
-                                Подробнее
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Michelin Latitude Sport 3 255/50 R19 -->
-                <div class="product-card">
-                    <img src="https://static.tildacdn.pub/tild6134-3532-4534-a565-333264643462/2025-11-22_09-48-11.png" alt="Michelin Latitude Sport 3" class="product-image">
-                    <div class="product-content">
-                        <h3 class="product-title">Michelin Latitude Sport 3 255/50 R19</h3>
-                        <div class="product-details">
-                            <div class="detail-item">
-                                <span class="detail-label">Состояние:</span>
-                                <span class="detail-label status-used">Б/у</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Протектор:</span>
-                                <span class="detail-value">7.3 мм</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Год:</span>
-                                <span class="detail-value">2017</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Сезон:</span>
-                                <span class="detail-label season-summer">Летние</span>
-                            </div>
-                        </div>
-                        <div class="product-price">
-                            <div class="price">15 000 ₽</div>
-                            <a href="https://www.avito.ru/dolgoprudnyy/zapchasti_i_aksessuary/michelin_latitude_sport_3_25550_r19_7375950734" target="_blank" class="btn btn-primary">
-                                Подробнее
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Nokian Tyres Hakkapeliitta R2 SUV 235/60 R18 -->
-                <div class="product-card">
-                    <img src="https://static.tildacdn.pub/tild3062-3534-4739-a337-383635623233/2025-11-22_09-32-20.png" alt="Nokian Tyres Hakkapeliitta R2 SUV" class="product-image">
-                    <div class="product-content">
-                        <h3 class="product-title">Nokian Tyres Hakkapeliitta R2 SUV 235/60 R18</h3>
-                        <div class="product-details">
-                            <div class="detail-item">
-                                <span class="detail-label">Состояние:</span>
-                                <span class="detail-label status-used">Б/у</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Протектор:</span>
-                                <span class="detail-value">4 мм</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Год:</span>
-                                <span class="detail-value">2020</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Сезон:</span>
-                                <span class="detail-label season-winter">Зимние</span>
-                            </div>
-                        </div>
-                        <div class="product-price">
-                            <div class="price">6 000 ₽</div>
-                            <a href="https://www.avito.ru/dolgoprudnyy/zapchasti_i_aksessuary/nokian_tyres_hakkapeliitta_r2_suv_23560_r18_3600171072" target="_blank" class="btn btn-primary">
-                                Подробнее
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Ovation VI-682 205/55 R16 -->
-                <div class="product-card">
-                    <img src="https://static.tildacdn.pub/tild6332-3631-4761-a233-376238363537/2025-05-30_10-14-05.png" alt="Ovation VI-682" class="product-image">
-                    <div class="product-content">
-                        <h3 class="product-title">Ovation VI-682 205/55 R16</h3>
-                        <div class="product-details">
-                            <div class="detail-item">
-                                <span class="detail-label">Состояние:</span>
-                                <span class="detail-label status-used">Б/у</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Протектор:</span>
-                                <span class="detail-value">5 мм</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Год:</span>
-                                <span class="detail-value">2020</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Сезон:</span>
-                                <span class="detail-label season-summer">Летние</span>
-                            </div>
-                        </div>
-                        <div class="product-price">
-                            <div class="price">14 000 ₽</div>
-                            <a href="https://www.avito.ru/dolgoprudnyy/zapchasti_i_aksessuary/ovation_vi-682_20555_r16_7407947390" target="_blank" class="btn btn-primary">
-                                Подробнее
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Pirelli Cinturato P1 185/60 R15 -->
-                <div class="product-card">
-                    <img src="https://static.tildacdn.pub/tild6139-6561-4638-b739-663736303030/2025-05-30_09-54-30.png" alt="Pirelli Cinturato P1" class="product-image">
-                    <div class="product-content">
-                        <h3 class="product-title">Pirelli Cinturato P1 185/60 R15</h3>
-                        <div class="product-details">
-                            <div class="detail-item">
-                                <span class="detail-label">Состояние:</span>
-                                <span class="detail-label status-used">Б/у</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Протектор:</span>
-                                <span class="detail-value">5.8 мм</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Год:</span>
-                                <span class="detail-value">2021</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Сезон:</span>
-                                <span class="detail-label season-summer">Летние</span>
-                            </div>
-                        </div>
-                        <div class="product-price">
-                            <div class="price">16 000 ₽</div>
-                            <a href="https://www.avito.ru/dolgoprudnyy/zapchasti_i_aksessuary/pirelli_cinturato_p1_18560_r15_7407529577" target="_blank" class="btn btn-primary">
-                                Подробнее
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Satoya Doro S-63 195/65 R15 -->
-                <div class="product-card">
-                    <img src="https://static.tildacdn.pub/tild3535-3566-4334-a235-643762623362/2025-06-15_13-23-39.png" alt="Satoya Doro S-63" class="product-image">
-                    <div class="product-content">
-                        <h3 class="product-title">Satoya Doro S-63 195/65 R15</h3>
-                        <div class="product-details">
-                            <div class="detail-item">
-                                <span class="detail-label">Состояние:</span>
-                                <span class="detail-label status-new">Новые</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Год:</span>
-                                <span class="detail-value">2024</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Сезон:</span>
-                                <span class="detail-label season-summer">Летние</span>
-                            </div>
-                        </div>
-                        <div class="product-price">
-                            <div class="price">19 500 ₽</div>
-                            <a href="https://www.avito.ru/dolgoprudnyy/zapchasti_i_aksessuary/satoya_doro_s-63_19565_r15_7407903895" target="_blank" class="btn btn-primary">
-                                Подробнее
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Satoya Doro S-63 205/55 R16 -->
-                <div class="product-card">
-                    <img src="https://static.tildacdn.pub/tild3236-6566-4761-b465-613531643037/2025-06-15_13-27-40.png" alt="Satoya Doro S-63" class="product-image">
-                    <div class="product-content">
-                        <h3 class="product-title">Satoya Doro S-63 205/55 R16</h3>
-                        <div class="product-details">
-                            <div class="detail-item">
-                                <span class="detail-label">Состояние:</span>
-                                <span class="detail-label status-new">Новые</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Год:</span>
-                                <span class="detail-value">2024</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Сезон:</span>
-                                <span class="detail-label season-summer">Летние</span>
-                            </div>
-                        </div>
-                        <div class="product-price">
-                            <div class="price">22 000 ₽</div>
-                            <a href="https://www.avito.ru/dolgoprudnyy/zapchasti_i_aksessuary/satoya_doro_s-63_20555_r16_7407151926" target="_blank" class="btn btn-primary">
-                                Подробнее
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
             </div>
-
-            <div style="text-align: center; margin-top: 3rem;">
-                <p style="font-size: 1.1rem; color: var(--gray); margin-bottom: 2rem;">
-                    Узнать о наличии других шин на складе:
-                </p>
-                <div class="phone">+7 906 786-70-46</div>
+            <div class="footer-column">
+                <h3>Контакты</h3>
+                <ul>
+                    <li>📞 +7 906 786-70-46</li>
+                    <li>📍 Новое шоссе 14, Хлебниково</li>
+                    <li>г. Долгопрудный</li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Режим работы</h3>
+                <ul>
+                    <li>Пн-Вс: 9:00 - 22:00</li>
+                    <li>Без выходных</li>
+                </ul>
             </div>
         </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2 class="section-title">Связаться с нами</h2>
-            <div class="contact-info">
-                <div class="phone">+7 906 786-70-46</div>
-                <p class="address">г. Долгопрудный, микрорайон Хлебниково, ул. Новое шоссе, 14</p>
-                <p style="color: var(--gray); margin-bottom: 2rem;">Ежедневно с 9:00 до 22:00</p>
-
-                <div class="social-links">
-                    <a href="tel:+79067867046" class="social-link" aria-label="Позвонить">
-                        📞
-                    </a>
-                    <a href="https://www.avito.ru/brands/i22897394" target="_blank" class="social-link" aria-label="Авито">
-                        🛒
-                    </a>
-
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p> © 2013-2026. Шины Макс</p>
+        <div class="footer-bottom">
+            © 2013-2026 Шины Макс. Все права защищены.
         </div>
     </footer>
 
     <script>
-        // Плавная прокрутка для навигации
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
+        // Реальные данные из вашего исходного кода
+        const products = [
+            {
+                id: 1,
+                brand: "BRIDGESTONE",
+                title: "Dueler H/P Sport",
+                image: "https://static.tildacdn.pub/tild3666-3464-4434-a333-353339303930/2025-11-22_09-39-52.png",
+                size: "275/40 R20",
+                season: "summer",
+                condition: "used",
+                tread: "6.5 мм",
+                year: 2019,
+                price: 14000,
+                fullTitle: "Bridgestone Dueler H/P Sport 275/40 R20",
+                specs: ["275/40 R20", "6.5 мм", "2019"],
+                link: "https://www.avito.ru/dolgoprudnyy/zapchasti_i_aksessuary/bridgestone_dueler_hp_sport_27540_r20_7375622243"
+            },
+            {
+                id: 2,
+                brand: "CONTINENTAL",
+                title: "ContiPremiumContact 6",
+                image: "https://static.tildacdn.pub/tild6564-3733-4934-b239-336664303631/2025-06-15_13-22-38.png",
+                size: "245/45 R19",
+                season: "summer",
+                condition: "used",
+                tread: "5.5 мм",
+                year: 2021,
+                price: 26000,
+                fullTitle: "Continental ContiPremiumContact 6 245/45 R19",
+                specs: ["245/45 R19", "5.5 мм", "2021"],
+                link: "https://www.avito.ru/dolgoprudnyy/zapchasti_i_aksessuary/continental_contipremiumcontact_6_24545_r19_7407237554"
+            },
+            {
+                id: 3,
+                brand: "CONTINENTAL",
+                title: "ContiWinterContact TS 830 P",
+                image: "https://static.tildacdn.pub/tild6564-3733-4934-b239-336664303631/2025-06-15_13-22-38.png",
+                size: "215/60 R16",
+                season: "winter",
+                condition: "used",
+                tread: "4 мм",
+                year: 2020,
+                price: 4000,
+                fullTitle: "Continental ContiWinterContact TS 830 P 215/60 R16",
+                specs: ["215/60 R16", "4 мм", "2020"],
+                link: "https://www.avito.ru/dolgoprudnyy/zapchasti_i_aksessuary/continental_contiwintercontact_ts_830_p_21560_r16_3599973341"
+            },
+            {
+                id: 4,
+                brand: "CONTINENTAL",
+                title: "ControlContact Tour A/S Plus",
+                image: "https://static.tildacdn.pub/tild3237-6532-4164-a562-323365626132/2025-06-23_08-18-14.png",
+                size: "215/50 R17",
+                season: "summer",
+                condition: "used",
+                tread: "5.5 мм",
+                year: 2019,
+                price: 5000,
+                fullTitle: "Continental ControlContact Tour A/S Plus 215/50 R17",
+                specs: ["215/50 R17", "5.5 мм", "2019"],
+                link: "https://www.avito.ru/dolgoprudnyy/zapchasti_i_aksessuary/continental_controlcontact_tour_as_plus_21550_r17_7375915321"
+            },
+            {
+                id: 5,
+                brand: "FORMULA",
+                title: "Energy",
+                image: "https://static.tildacdn.pub/tild6138-3236-4337-a638-386632653062/2025-06-23_08-03-25.png",
+                size: "225/65 R17",
+                season: "summer",
+                condition: "new",
+                tread: "новая",
+                year: 2024,
+                price: 38000,
+                fullTitle: "Formula Energy 225/65 R17",
+                specs: ["225/65 R17", "2024"],
+                link: "https://www.avito.ru/dolgoprudnyy/zapchasti_i_aksessuary/formula_energy_22565_r17_7407619230"
+            },
+            {
+                id: 6,
+                brand: "GOODYEAR",
+                title: "Fortera",
+                image: "https://static.tildacdn.pub/tild3039-6438-4436-b635-623038383039/2025-11-22_09-24-14.png",
+                size: "265/60 R18",
+                season: "summer",
+                condition: "used",
+                tread: "5 мм",
+                year: 2020,
+                price: 8000,
+                fullTitle: "Goodyear Fortera 265/60 R18",
+                specs: ["265/60 R18", "5 мм", "2020"],
+                link: "https://www.avito.ru/dolgoprudnyy/zapchasti_i_aksessuary/goodyear_fortera_26560_r18_3375873104"
+            },
+            {
+                id: 7,
+                brand: "КАМА",
+                title: "Kаma-Euro LCV-131",
+                image: "https://static.tildacdn.pub/tild3236-6139-4935-b765-623330303832/2025-11-22_09-45-23.png",
+                size: "205/65 R16C",
+                season: "summer",
+                condition: "used",
+                tread: "8 мм",
+                year: 2022,
+                price: 12000,
+                fullTitle: "КАМА Kаma-Euro LCV-131 205/65 R16C",
+                specs: ["205/65 R16C", "8 мм", "2022"],
+                link: "https://www.avito.ru/dolgoprudnyy/zapchasti_i_aksessuary/kama_kama-euro_lcv-131_20565_r16c_4559868614"
+            },
+            {
+                id: 8,
+                brand: "KUMHO",
+                title: "I'Zen KW31",
+                image: "https://static.tildacdn.pub/tild3636-3766-4739-b436-366135616663/2025-11-22_09-37-30.png",
+                size: "225/60 R17",
+                season: "winter",
+                condition: "used",
+                tread: "4 мм",
+                year: 2016,
+                price: 4500,
+                fullTitle: "Kumho I'Zen KW31 225/60 R17",
+                specs: ["225/60 R17", "4 мм", "2016"],
+                link: "https://www.avito.ru/dolgoprudnyy/zapchasti_i_aksessuary/kumho_izen_kw31_22560_r17_2863941477"
+            },
+            {
+                id: 9,
+                brand: "MASTERCRAFT",
+                title: "Courser A/T",
+                image: "https://static.tildacdn.pub/tild3362-6165-4531-b032-343734623935/2025-11-22_09-36-42.png",
+                size: "285/60 R18",
+                season: "summer",
+                condition: "used",
+                tread: "4.5 мм",
+                year: 2020,
+                price: 5000,
+                fullTitle: "Mastercraft Courser A/T 285/60 R18",
+                specs: ["285/60 R18", "4.5 мм", "2020"],
+                link: "https://www.avito.ru/dolgoprudnyy/zapchasti_i_aksessuary/mastercraft_courser_at_28560_r18_3376568673"
+            },
+            {
+                id: 10,
+                brand: "MICHELIN",
+                title: "Latitude Sport 3",
+                image: "https://static.tildacdn.pub/tild6134-3532-4534-a565-333264643462/2025-11-22_09-48-11.png",
+                size: "255/50 R19",
+                season: "summer",
+                condition: "used",
+                tread: "7.3 мм",
+                year: 2017,
+                price: 15000,
+                fullTitle: "Michelin Latitude Sport 3 255/50 R19",
+                specs: ["255/50 R19", "7.3 мм", "2017"],
+                link: "https://www.avito.ru/dolgoprudnyy/zapchasti_i_aksessuary/michelin_latitude_sport_3_25550_r19_7375950734"
+            },
+            {
+                id: 11,
+                brand: "NOKIAN",
+                title: "Hakkapeliitta R2 SUV",
+                image: "https://static.tildacdn.pub/tild3062-3534-4739-a337-383635623233/2025-11-22_09-32-20.png",
+                size: "235/60 R18",
+                season: "winter",
+                condition: "used",
+                tread: "4 мм",
+                year: 2020,
+                price: 6000,
+                fullTitle: "Nokian Hakkapeliitta R2 SUV 235/60 R18",
+                specs: ["235/60 R18", "4 мм", "2020"],
+                link: "https://www.avito.ru/dolgoprudnyy/zapchasti_i_aksessuary/nokian_tyres_hakkapeliitta_r2_suv_23560_r18_3600171072"
+            },
+            {
+                id: 12,
+                brand: "OVATION",
+                title: "VI-682",
+                image: "https://static.tildacdn.pub/tild6332-3631-4761-a233-376238363537/2025-05-30_10-14-05.png",
+                size: "205/55 R16",
+                season: "summer",
+                condition: "used",
+                tread: "5 мм",
+                year: 2020,
+                price: 14000,
+                fullTitle: "Ovation VI-682 205/55 R16",
+                specs: ["205/55 R16", "5 мм", "2020"],
+                link: "https://www.avito.ru/dolgoprudnyy/zapchasti_i_aksessuary/ovation_vi-682_20555_r16_7407947390"
+            },
+            {
+                id: 13,
+                brand: "PIRELLI",
+                title: "Cinturato P1",
+                image: "https://static.tildacdn.pub/tild6139-6561-4638-b739-663736303030/2025-05-30_09-54-30.png",
+                size: "185/60 R15",
+                season: "summer",
+                condition: "used",
+                tread: "5.8 мм",
+                year: 2021,
+                price: 16000,
+                fullTitle: "Pirelli Cinturato P1 185/60 R15",
+                specs: ["185/60 R15", "5.8 мм", "2021"],
+                link: "https://www.avito.ru/dolgoprudnyy/zapchasti_i_aksessuary/pirelli_cinturato_p1_18560_r15_7407529577"
+            },
+            {
+                id: 14,
+                brand: "SATOYA",
+                title: "Doro S-63",
+                image: "https://static.tildacdn.pub/tild3535-3566-4334-a235-643762623362/2025-06-15_13-23-39.png",
+                size: "195/65 R15",
+                season: "summer",
+                condition: "new",
+                tread: "новая",
+                year: 2024,
+                price: 19500,
+                fullTitle: "Satoya Doro S-63 195/65 R15",
+                specs: ["195/65 R15", "2024"],
+                link: "https://www.avito.ru/dolgoprudnyy/zapchasti_i_aksessuary/satoya_doro_s-63_19565_r15_7407903895"
+            },
+            {
+                id: 15,
+                brand: "SATOYA",
+                title: "Doro S-63",
+                image: "https://static.tildacdn.pub/tild3236-6566-4761-b465-613531643037/2025-06-15_13-27-40.png",
+                size: "205/55 R16",
+                season: "summer",
+                condition: "new",
+                tread: "новая",
+                year: 2024,
+                price: 22000,
+                fullTitle: "Satoya Doro S-63 205/55 R16",
+                specs: ["205/55 R16", "2024"],
+                link: "https://www.avito.ru/dolgoprudnyy/zapchasti_i_aksessuary/satoya_doro_s-63_20555_r16_7407151926"
+            }
+        ];
 
-        // Фиксированный хедер
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('.header');
-            if (window.scrollY > 100) {
-                header.style.background = 'rgba(255, 255, 255, 0.95)';
-                header.style.backdropFilter = 'blur(10px)';
+        // Состояние приложения
+        let currentPage = 1;
+        let itemsPerPage = window.innerWidth <= 768 ? 8 : 12; // Меньше на мобилке
+        let filteredProducts = [...products];
+        let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+
+        // Элементы DOM
+        const productsGrid = document.getElementById('productsGrid');
+        const paginationEl = document.getElementById('pagination');
+        const resultsCount = document.getElementById('resultsCount');
+        const searchInput = document.getElementById('searchInput');
+        const searchBtn = document.getElementById('searchBtn');
+        const seasonFilter = document.getElementById('seasonFilter');
+        const sortFilter = document.getElementById('sortFilter');
+
+        // Сохраняем избранное
+        function saveFavorites() {
+            localStorage.setItem('favorites', JSON.stringify(favorites));
+        }
+
+        // Переключение избранного
+        function toggleFavorite(productId, btn) {
+            const index = favorites.indexOf(productId);
+            if (index === -1) {
+                favorites.push(productId);
+                btn.classList.add('active');
             } else {
-                header.style.background = 'var(--light)';
-                header.style.backdropFilter = 'none';
+                favorites.splice(index, 1);
+                btn.classList.remove('active');
+            }
+            saveFavorites();
+        }
+
+        // Фильтрация и сортировка
+        function filterAndSort() {
+            const searchTerm = searchInput.value.toLowerCase().trim();
+            const season = seasonFilter.value;
+            const sort = sortFilter.value;
+
+            // Фильтрация
+            filteredProducts = products.filter(product => {
+                // Поиск по названию
+                const matchesSearch = searchTerm === '' ||
+                    product.fullTitle.toLowerCase().includes(searchTerm) ||
+                    product.brand.toLowerCase().includes(searchTerm);
+
+                // Фильтр по сезону
+                const matchesSeason = season === 'all' || product.season === season;
+
+                return matchesSearch && matchesSeason;
+            });
+
+            // Сортировка
+            if (sort === 'priceAsc') {
+                filteredProducts.sort((a, b) => a.price - b.price);
+            } else if (sort === 'priceDesc') {
+                filteredProducts.sort((a, b) => b.price - a.price);
+            } else {
+                // По умолчанию - по ID (как в исходном каталоге)
+                filteredProducts.sort((a, b) => a.id - b.id);
+            }
+
+            // Обновляем счетчик
+            resultsCount.textContent = `${filteredProducts.length} товаров`;
+
+            // Сбрасываем на первую страницу
+            currentPage = 1;
+            renderProducts();
+        }
+
+        // Рендер товаров
+        function renderProducts() {
+            const start = (currentPage - 1) * itemsPerPage;
+            const end = start + itemsPerPage;
+            const paginatedProducts = filteredProducts.slice(start, end);
+
+            productsGrid.innerHTML = paginatedProducts.map(product => {
+                const isFavorite = favorites.includes(product.id);
+
+                return `
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="${product.image}" alt="${product.brand} ${product.title}">
+                        </div>
+                        <div class="product-info">
+                            <div class="product-brand">${product.brand}</div>
+                            <h3 class="product-title">${product.title}</h3>
+                            <div class="product-specs">
+                                <span>${product.size}</span>
+                                ${product.tread && product.tread !== 'новая' ? `<span>${product.tread}</span>` : ''}
+                                <span>${product.year}</span>
+                            </div>
+                            <div class="product-badges">
+                                <span class="badge ${product.condition}">${product.condition === 'new' ? 'Новые' : 'Б/у'}</span>
+                                <span class="badge ${product.season}">${product.season === 'summer' ? 'Лето' : 'Зима'}</span>
+                            </div>
+                            ${product.tread && product.tread !== 'новая' ? `
+                                <div class="product-tread">
+                                    Протектор: <strong>${product.tread}</strong>
+                                </div>
+                            ` : ''}
+                            <div class="product-price">${product.price.toLocaleString()} ₽</div>
+                            <div class="product-actions">
+                                <a href="${product.link}" target="_blank" class="btn-primary">Подробнее</a>
+                                <button class="btn-favorite ${isFavorite ? 'active' : ''}" onclick="toggleFavorite(${product.id}, this)">
+                                    ❤
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            renderPagination();
+        }
+
+        // Рендер пагинации
+        function renderPagination() {
+            const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
+
+            if (totalPages <= 1) {
+                paginationEl.innerHTML = '';
+                return;
+            }
+
+            let paginationHtml = '';
+
+            // Кнопка "Назад"
+            if (currentPage > 1) {
+                paginationHtml += `<a href="#" onclick="changePage(${currentPage - 1}); return false;">←</a>`;
+            }
+
+            // Номера страниц
+            for (let i = 1; i <= totalPages; i++) {
+                if (
+                    i === 1 ||
+                    i === totalPages ||
+                    (i >= currentPage - 1 && i <= currentPage + 1)
+                ) {
+                    paginationHtml += `<a href="#" onclick="changePage(${i}); return false;" class="${i === currentPage ? 'active' : ''}">${i}</a>`;
+                } else if (i === currentPage - 2 || i === currentPage + 2) {
+                    paginationHtml += `<a href="#" onclick="changePage(${i}); return false;">...</a>`;
+                }
+            }
+
+            // Кнопка "Вперед"
+            if (currentPage < totalPages) {
+                paginationHtml += `<a href="#" onclick="changePage(${currentPage + 1}); return false;">→</a>`;
+            }
+
+            paginationEl.innerHTML = paginationHtml;
+        }
+
+        // Смена страницы
+        window.changePage = function(page) {
+            currentPage = page;
+            renderProducts();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        };
+
+        // Делаем toggleFavorite глобальной
+        window.toggleFavorite = toggleFavorite;
+
+        // Обработчики событий
+        searchBtn.addEventListener('click', filterAndSort);
+        searchInput.addEventListener('keyup', (e) => {
+            if (e.key === 'Enter') filterAndSort();
+        });
+        seasonFilter.addEventListener('change', filterAndSort);
+        sortFilter.addEventListener('change', filterAndSort);
+
+        // Адаптация количества товаров на странице при изменении размера окна
+        window.addEventListener('resize', () => {
+            const newItemsPerPage = window.innerWidth <= 768 ? 8 : 12;
+            if (newItemsPerPage !== itemsPerPage) {
+                itemsPerPage = newItemsPerPage;
+                renderProducts();
             }
         });
+
+        // Инициализация
+        filterAndSort();
     </script>
 </body>
 </html>
