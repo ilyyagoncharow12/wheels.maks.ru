@@ -236,24 +236,6 @@
             z-index: 100;
         }
 
-        /* Анимация перехода */
-        .page-transition {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #2D5BFF;
-            z-index: 9999;
-            transform: translateY(100%);
-            transition: transform 0.5s ease;
-            pointer-events: none;
-        }
-
-        .page-transition.active {
-            transform: translateY(0);
-        }
-
         /* ========== ДИЗАЙН ДЛЯ КОМПЬЮТЕРА (ширина > 768px) ========== */
         @media (min-width: 769px) {
             body {
@@ -794,7 +776,7 @@
                 font-size: 1.2rem;
             }
 
-            /* АНИМАЦИИ ДЛЯ ТЕЛЕФОНА - ИСПРАВЛЕНО (остаются видимыми) */
+            /* АНИМАЦИИ ДЛЯ ТЕЛЕФОНА */
             .fade-up {
                 opacity: 0;
                 transform: translateY(20px);
@@ -1283,13 +1265,10 @@
     <meta name="google-site-verification" content="SywmO4B-_CFsTgsV3D4i6YvDK5r4HblMp171khLkTWg" />
 </head>
 <body>
-    <!-- Элемент для анимации перехода -->
-    <div class="page-transition" id="pageTransition"></div>
-
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
-            <a href="#hero" class="nav-brand" data-transition>
+            <a href="#hero" class="nav-brand">
                 <img src="https://static.tildacdn.pub/tild6537-6264-4537-a536-366430656136/2025-05-31_23-10-58_.png" alt="Шины Макс" class="nav-logo">
                 <span class="brand-text">Шины Макс</span>
             </a>
@@ -1301,10 +1280,10 @@
             </div>
 
             <ul class="nav-menu" id="navMenu">
-                <li><a href="#hero" class="nav-link active" data-transition>Главная</a></li>
-                <li><a href="#services" class="nav-link" data-transition>Услуги</a></li>
-                <li><a href="#location" class="nav-link" data-transition>Адрес</a></li>
-                <li><a href="#contact" class="nav-link" data-transition>Контакты</a></li>
+                <li><a href="#hero" class="nav-link active">Главная</a></li>
+                <li><a href="#services" class="nav-link">Услуги</a></li>
+                <li><a href="#location" class="nav-link">Адрес</a></li>
+                <li><a href="#contact" class="nav-link">Контакты</a></li>
             </ul>
         </div>
     </nav>
@@ -1317,7 +1296,7 @@
                     <div class="hero-logo">
                         <img src="https://static.tildacdn.pub/tild3364-3639-4464-b234-373663393065/bk_icon.png" alt="Шины Макс">
                     </div>
-                    <a href="wheels_catalog.html" class="btn" data-transition>Каталог шин</a>
+                    <a href="wheels_catalog.html" class="btn">Каталог шин</a>
                 </div>
                 <div class="hero-text fade-up">
                     <h1>Шины Макс</h1>
@@ -1437,9 +1416,9 @@
                 </div>
 
                 <div style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center;">
-                    <a href="https://go.2gis.com/RRjqj" target="_blank" class="map-btn" data-transition>2ГИС</a>
+                    <a href="https://go.2gis.com/RRjqj" target="_blank" class="map-btn">2ГИС</a>
 
-                    <a href="https://yandex.ru/maps/?rtext=~55.970832,37.507266&rtt=auto" target="_blank" class="yandex-route-btn" data-transition>
+                    <a href="https://yandex.ru/maps/?rtext=~55.970832,37.507266&rtt=auto" target="_blank" class="yandex-route-btn">
                         <svg viewBox="0 0 24 24">
                             <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
                         </svg>
@@ -1489,17 +1468,17 @@
     <section class="contact" id="contact">
         <div class="container">
             <div class="phone fade-up">
-                <a href="tel:+79067867046" data-transition>+7 906 786-70-46</a>
+                <a href="tel:+79067867046">+7 906 786-70-46</a>
             </div>
             <p class="contact-address fade-up">мкр. Хлебниково, Долгопрудный, Новое шоссе 14</p>
 
             <div class="social-links fade-up">
-                <a href="tel:+79067867046" class="social-link" aria-label="Позвонить" data-transition>
+                <a href="tel:+79067867046" class="social-link" aria-label="Позвонить">
                     <svg viewBox="0 0 24 24" fill="currentColor">
                         <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
                     </svg>
                 </a>
-                <a href="https://www.avito.ru/brands/i22897394" target="_blank" class="social-link" aria-label="Авито" data-transition>
+                <a href="https://www.avito.ru/brands/i22897394" target="_blank" class="social-link" aria-label="Авито">
                     <svg viewBox="0 0 24 24" fill="currentColor">
                         <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1.5 15.5h-3v-7h3v7zm1.5 0V9h3l-3 4.5h3V17h-3zm6 0h-3v-7h3v7z"/>
                     </svg>
@@ -1559,63 +1538,26 @@
         });
     });
 
-    // Анимации при скролле для телефона - элементы ПОЯВЛЯЮТСЯ и ОСТАЮТСЯ
+    // Анимации при скролле для телефона
     if (window.innerWidth <= 768) {
         const fadeElements = document.querySelectorAll('.fade-up, .fade-left, .fade-right, .scale-in');
 
-        // Функция проверки видимости
         const checkVisibility = () => {
             fadeElements.forEach(element => {
                 const elementTop = element.getBoundingClientRect().top;
                 const windowHeight = window.innerHeight;
 
-                // Если элемент появился в области видимости
                 if (elementTop < windowHeight - 30) {
                     element.classList.add('visible');
                 }
-                // НЕ УБИРАЕМ КЛАСС, когда элемент уходит - он остается visible
             });
         };
 
-        // Проверяем сразу при загрузке
         window.addEventListener('load', checkVisibility);
-        // Проверяем при скролле
         window.addEventListener('scroll', checkVisibility);
-        // Проверяем при изменении размера окна
         window.addEventListener('resize', checkVisibility);
-
-        // Запускаем сразу, чтобы видимые элементы получили класс
         setTimeout(checkVisibility, 100);
     }
-
-    // Анимация перехода по ссылкам
-    const transitionElement = document.getElementById('pageTransition');
-    const transitionLinks = document.querySelectorAll('[data-transition]');
-
-    transitionLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
-            const href = link.getAttribute('href');
-
-            if (href && href.startsWith('#')) {
-                e.preventDefault();
-                const target = document.querySelector(href);
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            } else if (href && !href.startsWith('#') && !href.startsWith('tel:')) {
-                e.preventDefault();
-
-                transitionElement.classList.add('active');
-
-                setTimeout(() => {
-                    window.location.href = href;
-                }, 300);
-            }
-        });
-    });
 
     // Показ футера при скролле
     window.addEventListener('scroll', function() {
