@@ -70,7 +70,7 @@ const HELP = `
   node scrape_avito.mjs "https://www.avito.ru/brands/i22897394/all?sellerId=..." --watch 60 --apply
 `;
 
-// ---------- Парсинг из карточки ----------
+// ---------- Парсинг из карточки ---------
 
 const WINTER_HINTS = /(hakka|hakkapeliitta|contiwinter|ice|arctic|wmos|snow|winter|gislaved|nordman|iceguard|icezero|studless|шип|зима|зимн)/i;
 const SIZE_RE = /(\d{3})\s*\/\s*(\d{2})\s*R\s*(\d{2})/i;
