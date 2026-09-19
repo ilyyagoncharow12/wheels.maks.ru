@@ -1,0 +1,15 @@
+{
+  "name": "wheels-maks",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Сайт Шины Макс + скрапер каталога с Авито",
+  "scripts": {
+    "scrape": "node scrape_avito.mjs",
+    "sync": "node scrape_avito.mjs \"https://www.avito.ru/brands/i22897394/all?sellerId=a61479612c120d8fcc4d318554023a70\" --apply",
+    "watch": "node scrape_avito.mjs \"https://www.avito.ru/brands/i22897394/all?sellerId=a61479612c120d8fcc4d318554023a70\" --watch 60 --apply"
+  },
+  "dependencies": {
+    "playwright": "^1.63.0"
+  }
+}

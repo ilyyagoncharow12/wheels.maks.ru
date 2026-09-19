@@ -1,0 +1,5 @@
+node_modules/
+.avito-state/
+avito_products.json
+debug_tmp.mjs
+debug_avito.png
