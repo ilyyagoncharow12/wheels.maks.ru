@@ -7,6 +7,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const STATE_DIR = path.join(__dirname, '.avito-state');
 const OUT_JSON = path.join(__dirname, 'avito_products.json');
 const CATALOG_HTML = path.join(__dirname, 'wheels_catalog.html');
+const PRODUCTS_JS = path.join(__dirname, 'products.js');
 
 function parseArgs() {
     const args = process.argv.slice(2);
@@ -49,7 +50,7 @@ const HELP = `
 Опции:
   --deep        Открывать каждое объявление и вытаскивать год/протектор/состояние
   --limit N     Обрабатывать не больше N объявлений (по умолчанию все)
-  --apply       Сразу вставить собранные товары в wheels_catalog.html
+  --apply       Сразу вставить собранные товары в каталог (products.js)
   --batch N     Сколько НОВЫХ карточек добавлять за один раз (по умолчанию 12).
                 Остальные новые подождут следующего запуска.
                 'all' или 0 — добавить всё сразу.
@@ -441,25 +442,29 @@ function loadCatalogArray() {
     const map = new Map();
     const set = new Set();
     const list = [];
-    try {
-        const html = readFileSync(CATALOG_HTML, 'utf8');
-        const start = html.indexOf('const products = [');
-        const end = html.indexOf('];', start);
-        if (start !== -1 && end !== -1) {
-            const oldBlock = html.slice(start, end + 2);
-            const m = oldBlock.match(/const products = \[([\s\S]*)\];/);
-            if (m) {
-                const current = eval('[' + m[1] + ']');
-                current.forEach(p => {
-                    list.push(p);
-                    if (p.link) {
-                        map.set(p.link, p);
-                        set.add(p.link);
-                    }
-                });
+    // Источники: сначала products.js (общий файл каталога), затем старый блок в wheels_catalog.html
+    const sources = existsSync(PRODUCTS_JS)
+        ? [[PRODUCTS_JS, 'const PRODUCTS = ['], [CATALOG_HTML, 'const products = ['],]
+        : [[CATALOG_HTML, 'const products = ['],];
+    for (const [file, marker] of sources) {
+        try {
+            const html = readFileSync(file, 'utf8');
+            const start = html.indexOf(marker);
+            const end = html.indexOf('];', start);
+            if (start !== -1 && end !== -1) {
+                const oldBlock = html.slice(start, end + 2);
+                const m = oldBlock.match(/\[([\s\S]*)\];$/);
+                if (m) list.push(...eval('[' + m[1] + ']'));
             }
+        } catch { /* пробуем следующий источник */ }
+        if (list.length) break;
+    }
+    list.forEach(p => {
+        if (p.link) {
+            map.set(p.link, p);
+            set.add(p.link);
         }
-    } catch { /* каталога нет — считаем что всё новое */ }
+    });
     return { map, set, list };
 }
 
@@ -485,79 +490,51 @@ function applyToCatalog(products, batch = 12) {
         console.warn('[!] Нечего вставлять — собрано 0 товаров. Каталог не тронут.');
         return false;
     }
-    if (!existsSync(CATALOG_HTML)) {
-        console.error('[!] wheels_catalog.html не найден');
-        return false;
-    }
-    let html = readFileSync(CATALOG_HTML, 'utf8');
-    const start = html.indexOf('const products = [');
-    const end = html.indexOf('];', start);
-    if (start === -1 || end === -1) {
-        console.error('[!] Блок "const products = [...]" не найден в wheels_catalog.html');
-        return false;
-    }
 
-    let next = products;
-    if (start !== -1) {
-        // Обновляем существующие позиции по ссылке, новые добавляем
-        try {
-            const oldBlock = html.slice(start, end + 2);
-            const arrMatch = oldBlock.match(/const products = \[([\s\S]*)\];/);
-            if (arrMatch) {
-                const current = eval('[' + arrMatch[1] + ']');
-                const byLink = new Map();
-                current.forEach(p => { if (p.link) byLink.set(p.link, p); });
+    try {
+        const { list: current } = loadCatalogArray();
+        const byLink = new Map();
+        current.forEach(p => { if (p.link) byLink.set(p.link, p); });
 
-                let updatedCount = 0;
-                let maxId = current.reduce((m, p) => Math.max(m, p.id || 0), 0);
-                const allFresh = products.filter(p => !byLink.has(p.link));
-                const fresh = allFresh.slice(0, batch);
-                const pending = allFresh.length - fresh.length;
-                products.forEach(p => {
-                    const ex = byLink.get(p.link);
-                    if (ex) {
-                        const keptId = ex.id;
-                        // Не затираем заполненные поля пустыми значениями из карточки
-                        const keep = {};
-                        const protect = ['year', 'tread', 'season', 'specs', 'title', 'brand', 'fullTitle', 'size'];
-                        for (const k of protect) {
-                            const fv = p[k];
-                            const empty = fv === null || fv === undefined || fv === '' || fv === '—'
-                                || (Array.isArray(fv) && fv.length === 0);
-                            if (empty) keep[k] = ex[k];
-                        }
-                        Object.assign(ex, p, keep, { id: keptId });
-                        updatedCount++;
-                    }
-                });
-                fresh.forEach(p => { maxId += 1; p.id = maxId; });
-
-                next = [...current];
-                next.push(...fresh);
-                console.log(`[•] Обновлено существующих: ${updatedCount}, новых добавлено: ${fresh.length}${pending > 0 ? ` (ещё ${pending} ждут следующего запуска)` : ''}`);
+        let updatedCount = 0;
+        let maxId = current.reduce((m, p) => Math.max(m, p.id || 0), 0);
+        const allFresh = products.filter(p => !byLink.has(p.link));
+        const fresh = allFresh.slice(0, batch);
+        const pending = allFresh.length - fresh.length;
+        products.forEach(p => {
+            const ex = byLink.get(p.link);
+            if (ex) {
+                const keptId = ex.id;
+                // Не затираем заполненные поля пустыми значениями из карточки
+                const keep = {};
+                const protect = ['year', 'tread', 'season', 'specs', 'title', 'brand', 'fullTitle', 'size'];
+                for (const k of protect) {
+                    const fv = p[k];
+                    const empty = fv === null || fv === undefined || fv === '' || fv === '—'
+                        || (Array.isArray(fv) && fv.length === 0);
+                    if (empty) keep[k] = ex[k];
+                }
+                Object.assign(ex, p, keep, { id: keptId });
+                updatedCount++;
             }
-        } catch (e) {
-            console.warn('[!] Не смог прочитать текущий каталог, заменяю целиком:', e.message);
-        }
-    }
+        });
+        fresh.forEach(p => { maxId += 1; p.id = maxId; });
 
-    const body = `const products = [\n${serializeProducts(next)}\n\n        ];`;
-    html = html.slice(0, start) + body + html.slice(end + 2);
-    writeFileSync(CATALOG_HTML, html, 'utf8');
-    console.log(`[✓] Каталог обновлён: ${next.length} товаров`);
-    return true;
+        const next = [...current, ...fresh];
+        console.log(`[•] Обновлено существующих: ${updatedCount}, новых добавлено: ${fresh.length}${pending > 0 ? ` (ещё ${pending} ждут следующего запуска)` : ''}`);
+
+        writeCatalog(next);
+        return true;
+    } catch (e) {
+        console.warn('[!] Не смог обновить каталог:', e.message);
+        return false;
+    }
 }
 
 function writeCatalog(products) {
-    const html = readFileSync(CATALOG_HTML, 'utf8');
-    const start = html.indexOf('const products = [');
-    const end = html.indexOf('];', start);
-    if (start === -1 || end === -1) {
-        console.error('[!] Блок "const products = [...]" не найден в wheels_catalog.html');
-        return false;
-    }
-    const body = `const products = [\n${serializeProducts(products)}\n\n        ];`;
-    writeFileSync(CATALOG_HTML, html.slice(0, start) + body + html.slice(end + 2), 'utf8');
+    const body = `// Файл каталога шин Автоматически сгенерирован скрапером (не править вручную)\nconst PRODUCTS = [\n${serializeProducts(products)}\n\n];\n`;
+    writeFileSync(PRODUCTS_JS, body, 'utf8');
+    console.log(`[✓] Каталог обновлён: ${products.length} товаров (products.js)`);
     return true;
 }
 
