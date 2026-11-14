@@ -3,3 +3,12 @@ node_modules/
 avito_products.json
 debug_tmp.mjs
 debug_avito.png
+
+# админ-панель
+admin.config.json
+.admin-backups/
+products.js.tmp
+content.json.tmp
+work-log.json
+images/work/
+site-edits.json.tmp

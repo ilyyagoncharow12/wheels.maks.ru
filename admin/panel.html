@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Админ-панель | Шины Макс</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/x-icon" href="/favicon/favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="admin.css">
+</head>
+<body class="panel-body">
+
+<div class="app">
+    <!-- Боковое меню -->
+    <aside class="sidebar">
+        <div class="sb-brand">
+            <img src="https://static.tildacdn.pub/tild6537-6264-4537-a536-366430656136/2025-05-31_23-10-58_.png" alt="Шины Макс">
+            <span>
+                <b>Шины Макс</b>
+                <small>админ-панель</small>
+            </span>
+        </div>
+
+        <nav class="sb-nav">
+            <button class="sb-link active" data-view="products" data-owner-only>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 20V9"/></svg>
+                <span class="lbl">Карточки шин</span>
+                <span class="cnt" id="navCount">0</span>
+            </button>
+            <button class="sb-link" data-view="texts" data-owner-only>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h10M4 18h7"/><path d="M15 15l3 3 4-4"/></svg>
+                <span class="lbl">Тексты сайта</span>
+            </button>
+            <button class="sb-link" data-view="work">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4h6a2 2 0 0 1 2 2v1H7V6a2 2 0 0 1 2-2z"/><rect x="3" y="7" width="18" height="14" rx="2"/><path d="M3 12h18M8 16h3"/></svg>
+                <span class="lbl">Журнал работ</span>
+                <span class="cnt" id="navWorkCount">0</span>
+            </button>
+            <button class="sb-link" data-view="editor" data-owner-only>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>
+                <span class="lbl">Визуальный редактор</span>
+            </button>
+            <button class="sb-link" data-view="settings">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1-1.5 1.7 1.7 0 0 0-1.9.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.9 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1 1.7 1.7 0 0 0-.3-1.9l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.9.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.9-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.9V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>
+                <span class="lbl">Настройки</span>
+            </button>
+        </nav>
+
+        <div class="sb-bottom">
+            <a class="sb-link" href="/index.html" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6M10 14L21 3"/></svg>
+                <span class="lbl">Открыть сайт</span>
+            </a>
+            <button class="sb-link" id="btnLogout">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5M21 12H9"/></svg>
+                <span class="lbl">Выйти</span>
+            </button>
+        </div>
+    </aside>
+
+    <!-- Основная часть -->
+    <main class="main">
+        <header class="main-head">
+            <div>
+                <h1 id="viewTitle">Карточки шин</h1>
+                <div class="sub" id="viewSub">Редактирование каталога — перетаскивайте карточки, чтобы менять порядок</div>
+            </div>
+            <div class="spacer"></div>
+            <span class="save-state" id="saveState"><span class="dot"></span><span id="saveText">Загружаю каталог…</span></span>
+            <a class="btn btn-ghost btn-sm" href="/wheels_catalog.html" target="_blank" rel="noopener" data-owner-only>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>
+                Каталог
+            </a>
+        </header>
+
+        <div class="content">
+            <!-- ================= ТОВАРЫ ================= -->
+            <section class="view active" id="view-products">
+                <div class="alert warn" id="passWarn" hidden>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9L2.4 18a2 2 0 0 0 1.7 3h15.8a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg>
+                    <span>Вы используете пароль по умолчанию. Смените его в разделе «Настройки» — это важно, если сервер будет доступен с других устройств.</span>
+                </div>
+
+                <div class="toolbar">
+                    <div class="search field">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+                        <input type="text" id="pSearch" placeholder="Поиск: бренд, модель, размер…" autocomplete="off">
+                    </div>
+                    <select id="pFilterCond" aria-label="Состояние">
+                        <option value="">Все состояния</option>
+                        <option value="new">Новые</option>
+                        <option value="used">Б/у</option>
+                    </select>
+                    <select id="pFilterSeason" aria-label="Сезон">
+                        <option value="">Все сезоны</option>
+                        <option value="summer">Лето</option>
+                        <option value="winter">Зима</option>
+                    </select>
+                    <button class="btn btn-primary" id="btnAdd">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+                        Добавить товар
+                    </button>
+                    <span class="counter" id="pCounter"></span>
+                </div>
+
+                <div class="pgrid" id="pGrid"></div>
+
+                <div class="empty-box" id="pEmpty" hidden>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+                    <h3>Ничего не найдено</h3>
+                    <p>Измените поиск или фильтры, либо добавьте новую карточку.</p>
+                </div>
+            </section>
+
+            <!-- ================= ТЕКСТЫ ================= -->
+            <section class="view" id="view-texts">
+                <div class="alert info">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>
+                    <span>Здесь меняются тексты главной страницы и каталога: заголовки, описания, карточки «Почему мы», услуги, шаги, адрес и контакты. В тексте можно использовать HTML, например ссылку <b>&lt;a href="tel:+79067867046"&gt;позвонить&lt;/a&gt;</b>. Пустое поле означает «оставить как на сайте».</span>
+                </div>
+
+                <div class="texts-toolbar">
+                    <div class="search field">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+                        <input type="text" id="tSearch" placeholder="Найти текст: «протектор», «адрес», «услуги»…" autocomplete="off">
+                    </div>
+                    <span class="counter" id="tCounter"></span>
+                </div>
+
+                <div class="groups" id="tGroups"></div>
+
+                <div class="texts-actions">
+                    <button class="btn btn-primary" id="btnTextsSave">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><path d="M17 21v-8H7v8M7 3v5h8"/></svg>
+                        Сохранить тексты
+                    </button>
+                    <span class="save-state" id="textsState"><span class="dot"></span><span id="textsStateText">—</span></span>
+                    <span class="spacer"></span>
+                    <button class="btn btn-ghost btn-sm" id="btnTextsReload">Вернуть сохранённое</button>
+                </div>
+            </section>
+
+            <!-- ================= ЖУРНАЛ РАБОТ ================= -->
+            <section class="view" id="view-work">
+                <div class="work-summary" id="workSummary"></div>
+
+                <div class="toolbar work-toolbar">
+                    <div class="search field">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+                        <input type="text" id="wSearch" placeholder="Поиск: номер, марка, работа, товар…" autocomplete="off">
+                    </div>
+                    <select id="wFilterMonth" aria-label="Месяц"><option value="">Все месяцы</option></select>
+                    <select id="wFilterYear" aria-label="Год"><option value="">Все годы</option></select>
+                    <button class="btn btn-primary" id="btnAddWork">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+                        Добавить запись
+                    </button>
+                    <span class="counter" id="wCounter"></span>
+                </div>
+
+                <div class="work-list" id="workList"></div>
+
+                <div class="empty-box" id="wEmpty" hidden>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="14" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 12h18"/></svg>
+                    <h3>Записей пока нет</h3>
+                    <p>Нажмите «Добавить запись», чтобы сохранить первую работу: номер, марку, что сделали и сколько получили.</p>
+                </div>
+            </section>
+
+            <!-- ================= ВИЗУАЛЬНЫЙ РЕДАКТОР ================= -->
+            <section class="view" id="view-editor">
+                <div class="alert info">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>
+                    <span>Нажмите на любой элемент страницы — справа появятся настройки текста, ссылки, размера и цвета. Кнопка «Блок» добавляет новый заголовок, текст или кнопку. Товары в каталоге меняются в разделе «Карточки шин».</span>
+                </div>
+
+                <div class="editor-bar">
+                    <label class="ed-page">
+                        <span>Страница</span>
+                        <select id="edPage">
+                            <option value="index.html">Главная</option>
+                            <option value="wheels_catalog.html">Каталог шин</option>
+                        </select>
+                    </label>
+                    <button class="btn btn-ghost btn-sm" id="edUndo" type="button" title="Отменить последнее действие">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 14L4 9l5-5"/><path d="M4 9h11a5 5 0 0 1 0 10h-3"/></svg>
+                        Отменить
+                    </button>
+                    <button class="btn btn-ghost btn-sm" id="edReload" type="button">Обновить</button>
+                    <button class="btn btn-ghost btn-sm" id="edAddBlock" type="button">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M12 8v8M8 12h8"/></svg>
+                        Добавить блок
+                    </button>
+                    <span class="spacer"></span>
+                    <span class="save-state" id="edState"><span class="dot"></span><span id="edStateText">—</span></span>
+                    <button class="btn btn-primary btn-sm" id="edSave" type="button">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><path d="M17 21v-8H7v8M7 3v5h8"/></svg>
+                        Сохранить правки
+                    </button>
+                </div>
+
+                <div class="editor-wrap">
+                    <div class="editor-frame">
+                        <iframe id="edFrame" title="Страница сайта" src="about:blank"></iframe>
+                    </div>
+                    <aside class="inspector" id="edInspector">
+                        <div class="ins-empty" id="edInsEmpty">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/></svg>
+                            <b>Ничего не выбрано</b>
+                            <span>Нажмите на элемент страницы слева — здесь появятся настройки.</span>
+                        </div>
+                        <div class="ins-body" id="edInsBody" hidden></div>
+                    </aside>
+                </div>
+            </section>
+
+            <!-- ================= НАСТРОЙКИ ================= -->
+            <section class="view" id="view-settings">
+                <div class="settings-grid">
+                    <div class="panel-card" id="cardPublish">
+                        <h3>Публикация на сайт</h3>
+                        <p class="pc-sub">Сайт статический: изменения сохраняются в файлы проекта. Кнопка ниже сделает коммит и отправит его в GitHub — после этого обновится и сайт.</p>
+                        <label class="field">
+                            <span>Сообщение коммита</span>
+                            <input type="text" id="publishMessage" placeholder="Например: обновил каталог шин">
+                        </label>
+                        <div style="display:flex;gap:10px;margin-top:12px;flex-wrap:wrap">
+                            <button class="btn btn-primary" id="btnPublish">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+                                Опубликовать (git push)
+                            </button>
+                            <button class="btn btn-ghost" id="btnOpenFolder">Папка проекта</button>
+                        </div>
+                        <div class="publish-msg" id="publishMsg"></div>
+                        <pre class="publish-log" id="publishLog"></pre>
+                    </div>
+
+                    <div class="panel-card">
+                        <h3>Смена пароля</h3>
+                        <p class="pc-sub">Логин: <b id="cfgUser">—</b>. После смены пароля останетесь в панели только вы — прежние сессии завершатся.</p>
+                        <form id="passForm">
+                            <label class="field">
+                                <span>Текущий пароль</span>
+                                <input type="password" id="passCurrent" autocomplete="current-password" required>
+                            </label>
+                            <label class="field">
+                                <span>Новый пароль</span>
+                                <input type="password" id="passNext" autocomplete="new-password" minlength="6" required>
+                            </label>
+                            <label class="field">
+                                <span>Повторите новый пароль</span>
+                                <input type="password" id="passNext2" autocomplete="new-password" minlength="6" required>
+                            </label>
+                            <button class="btn btn-primary" type="submit">Сменить пароль</button>
+                        </form>
+                    </div>
+
+                    <div class="panel-card" id="cardInfo">
+                        <h3>Как это работает</h3>
+                        <p class="pc-sub">Короткая памятка по админ-панели.</p>
+                        <div class="kv">
+                            <div><span>Карточки шин</span><b>products.js</b></div>
+                            <div><span>Тексты сайта</span><b>content.json</b></div>
+                            <div><span>Правки редактора</span><b>site-edits.json</b></div>
+                            <div><span>Журнал работ</span><b>work-log.json</b></div>
+                            <div><span>Фото журнала</span><b>images/work/</b></div>
+                            <div><span>Загруженные фото</span><b>images/uploads/</b></div>
+                            <div><span>Резервные копии</span><b>.admin-backups/</b></div>
+                            <div><span>Логин и пароль</span><b>admin.config.json</b></div>
+                            <div><span>Адрес панели</span><b id="cfgUrl">—</b></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+</div>
+
+<!-- ================= МОДАЛЬНОЕ ОКНО ТОВАРА ================= -->
+<div class="modal" id="editModal" aria-hidden="true">
+    <div class="modal-veil" data-close-edit></div>
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="editTitle">
+        <div class="modal-head">
+            <div>
+                <h2 id="editTitle">Новая карточка</h2>
+                <div class="modal-sub" id="editSub">Заполните информацию о шине</div>
+            </div>
+            <button class="modal-close" data-close-edit aria-label="Закрыть">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" style="width:16px;height:16px"><path d="M6 6l12 12M18 6L6 18"/></svg>
+            </button>
+        </div>
+
+        <div class="modal-body">
+            <div class="photo-box">
+                <div class="photo-preview" id="photoPreview"></div>
+                <div class="upload-row">
+                    <button class="btn btn-ghost btn-sm" id="btnPickImage" type="button">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5-5 5 5M12 5v12"/></svg>
+                        Загрузить фото
+                    </button>
+                    <button class="btn btn-ghost btn-sm" id="btnRemoveImage" type="button">Убрать</button>
+                </div>
+                <input type="file" id="fileInput" accept="image/png,image/jpeg,image/webp,image/avif,image/gif">
+                <div class="drop" id="dropZone">или перетащите изображение сюда</div>
+                <label class="field">
+                    <span>Путь / ссылка на фото</span>
+                    <input type="text" id="fImage" placeholder="images/uploads/… или https://…">
+                </label>
+                <div class="field">
+                    <span class="hint">Фото хранится в папке проекта, поэтому не пропадёт при публикации.</span>
+                </div>
+            </div>
+
+            <div class="form-grid">
+                <label class="field full">
+                    <span>Название модели *</span>
+                    <input type="text" id="fTitle" placeholder="Например: ContiPremiumContact 6">
+                </label>
+                <label class="field">
+                    <span>Бренд</span>
+                    <input type="text" id="fBrand" list="brandList" placeholder="MICHELIN">
+                    <datalist id="brandList"></datalist>
+                </label>
+                <label class="field">
+                    <span>Размер</span>
+                    <input type="text" id="fSize" placeholder="245/45 R19">
+                </label>
+
+                <div class="form-sep">Состояние и характеристики</div>
+
+                <label class="field">
+                    <span>Сезон</span>
+                    <select id="fSeason">
+                        <option value="summer">Лето</option>
+                        <option value="winter">Зима</option>
+                    </select>
+                </label>
+                <label class="field">
+                    <span>Состояние</span>
+                    <select id="fCondition">
+                        <option value="used">Б/у</option>
+                        <option value="new">Новые</option>
+                    </select>
+                </label>
+                <label class="field">
+                    <span>Протектор</span>
+                    <input type="text" id="fTread" placeholder="6 мм / новая">
+                </label>
+                <label class="field">
+                    <span>Год выпуска</span>
+                    <input type="number" id="fYear" min="1950" max="2100" placeholder="2022">
+                </label>
+                <label class="field">
+                    <span>Цена, ₽</span>
+                    <input type="number" id="fPrice" min="0" step="100" placeholder="18500">
+                </label>
+                <label class="field">
+                    <span>В наличии, шт</span>
+                    <input type="number" id="fCount" min="0" max="9999" placeholder="4">
+                </label>
+
+                <div class="form-sep">Описание и ссылка</div>
+
+                <label class="field full">
+                    <span>Ссылка на Авито (необязательно)</span>
+                    <input type="text" id="fLink" placeholder="https://www.avito.ru/…">
+                </label>
+                <label class="field full">
+                    <span>Описание</span>
+                    <textarea id="fDescription" placeholder="Состояние, особенности, комплектность — всё, что увидит покупатель в карточке"></textarea>
+                </label>
+            </div>
+        </div>
+
+        <div class="modal-foot">
+            <button class="btn btn-danger" id="btnDeleteProduct" type="button">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6M10 11v6M14 11v6"/></svg>
+                Удалить
+            </button>
+            <span class="spacer"></span>
+            <button class="btn btn-ghost" data-close-edit type="button">Отмена</button>
+            <button class="btn btn-primary" id="btnSaveProduct" type="button">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><path d="M17 21v-8H7v8M7 3v5h8"/></svg>
+                Сохранить карточку
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- ================= МОДАЛЬНОЕ ОКНО ЖУРНАЛА РАБОТ ================= -->
+<div class="modal" id="workModal" aria-hidden="true">
+    <div class="modal-veil" data-close-work></div>
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="workTitle">
+        <div class="modal-head">
+            <div>
+                <h2 id="workTitle">Новая запись</h2>
+                <div class="modal-sub" id="workSub">Работа по машине: номер, марка, что сделали и выручка</div>
+            </div>
+            <button class="modal-close" data-close-work aria-label="Закрыть">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" style="width:16px;height:16px"><path d="M6 6l12 12M18 6L6 18"/></svg>
+            </button>
+        </div>
+
+        <div class="modal-body">
+            <div class="form-grid">
+                <label class="field">
+                    <span>Дата</span>
+                    <input type="date" id="wDate">
+                </label>
+                <label class="field">
+                    <span>Гос номер</span>
+                    <input type="text" id="wPlate" placeholder="А123ВС77" autocomplete="off">
+                </label>
+                <label class="field full">
+                    <span>Марка и модель машины</span>
+                    <input type="text" id="wBrand" placeholder="Kia Rio" autocomplete="off">
+                </label>
+                <label class="field full">
+                    <span>Что сделано</span>
+                    <textarea id="wWork" rows="3" placeholder="Зачистка, герметик, балансировка…"></textarea>
+                </label>
+
+                <div class="field full">
+                    <span>Фотографии машины</span>
+                    <div class="wphoto-grid" id="wPhotoGrid"></div>
+                    <div class="upload-row">
+                        <button class="btn btn-ghost btn-sm" id="btnPickWorkPhoto" type="button">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5-5 5 5M12 5v12"/></svg>
+                            Загрузить фото
+                        </button>
+                        <span class="hint" id="wPhotoHint">Можно выбрать несколько файлов, до 12 МБ каждый</span>
+                    </div>
+                    <input type="file" id="wFileInput" accept="image/png,image/jpeg,image/webp,image/avif,image/gif" multiple hidden>
+                </div>
+
+                <div class="form-sep">Продажи и выручка</div>
+
+                <label class="field full">
+                    <span>Что продали и какие работы сделали</span>
+                    <textarea id="wSold" rows="3" placeholder="Комплект шин Michelin 225/45 R18, герметик, балансировка…"></textarea>
+                </label>
+                <label class="field">
+                    <span>Получено, ₽</span>
+                    <input type="number" id="wAmount" min="0" step="100" placeholder="15000">
+                </label>
+            </div>
+        </div>
+
+        <div class="modal-foot">
+            <button class="btn btn-danger" id="btnDeleteWork" type="button">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6M10 11v6M14 11v6"/></svg>
+                Удалить
+            </button>
+            <span class="spacer"></span>
+            <button class="btn btn-ghost" data-close-work type="button">Отмена</button>
+            <button class="btn btn-primary" id="btnSaveWork" type="button">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><path d="M17 21v-8H7v8M7 3v5h8"/></svg>
+                Сохранить запись
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- ================= МОДАЛЬНОЕ ОКНО «ДОБАВИТЬ БЛОК» ================= -->
+<div class="modal" id="blockModal" aria-hidden="true">
+    <div class="modal-veil" data-close-block></div>
+    <div class="modal-card modal-small" role="dialog" aria-modal="true" aria-labelledby="blockTitle">
+        <div class="modal-head">
+            <div>
+                <h2 id="blockTitle">Добавить блок</h2>
+                <div class="modal-sub">Блок появится после выбранного элемента или в конце страницы</div>
+            </div>
+            <button class="modal-close" data-close-block aria-label="Закрыть">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" style="width:16px;height:16px"><path d="M6 6l12 12M18 6L6 18"/></svg>
+            </button>
+        </div>
+        <div class="modal-body">
+            <label class="field">
+                <span>Что добавить</span>
+                <select id="bPreset">
+                    <option value="heading">Заголовок</option>
+                    <option value="text">Текст</option>
+                    <option value="button">Кнопка со ссылкой</option>
+                    <option value="card">Карточка: заголовок + текст + кнопка</option>
+                    <option value="spacer">Отступ / разделитель</option>
+                </select>
+            </label>
+            <label class="field">
+                <span>Текст</span>
+                <input type="text" id="bText" placeholder="Например: Записаться на шиномонтаж">
+            </label>
+            <label class="field" id="bLinkField">
+                <span>Ссылка для кнопки</span>
+                <input type="text" id="bLink" placeholder="tel:+79067867046 или https://…">
+            </label>
+            <label class="field">
+                <span>Куда вставить</span>
+                <select id="bWhere">
+                    <option value="after">После выбранного элемента</option>
+                    <option value="before">Перед выбранным элементом</option>
+                    <option value="append">В конец страницы</option>
+                </select>
+            </label>
+            <div class="hint" id="bHint">Если элемент не выбран, блок добавится в конец страницы.</div>
+        </div>
+        <div class="modal-foot">
+            <span class="spacer"></span>
+            <button class="btn btn-ghost" data-close-block type="button">Отмена</button>
+            <button class="btn btn-primary" id="btnInsertBlock" type="button">Вставить блок</button>
+        </div>
+    </div>
+</div>
+
+<div class="toast-wrap" id="toastWrap"></div>
+
+<script src="panel.js"></script>
+</body>
+</html>
